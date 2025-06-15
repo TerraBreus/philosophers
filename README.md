@@ -51,3 +51,33 @@ External functions
 - pthread_mutex_lock
 - pthread_mutex_unlock
 
+# Exercises
+
+1. Basic Thread Creation
+Write a C program that:
+
+Creates 3 threads.
+
+Each thread prints a message and its own thread ID.
+
+The main thread waits for all threads to complete.
+
+Goal: Understand pthread_create, pthread_join.
+
+2. Shared Variable Trap
+Try this: create two threads that both increment a shared int variable 1,000,000 times.
+
+Do not use synchronization (like mutexes).
+
+💭 What result do you expect to see?
+💭 What do you actually see?
+💭 Why?
+
+Now, try fixing the race condition using a pthread_mutex_t.
+
+3. Deadlock Detection (Conceptual)
+Sketch out a situation where two threads both need two resources (mutexes) but acquire them in opposite orders.
+
+💭 What could go wrong?
+💭 What conditions must be true for a deadlock to occur?
+
