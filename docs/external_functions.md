@@ -34,5 +34,5 @@ From `<pthread.h>`
 
 `int  pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*routine) (void *), void *arg);`
 
-This looks more difficult than it is. If you need to understand threads, I refer you to [this](/threads) page
+This looks more difficult than it is. If you need to understand threads, I refer you to [this](threads.md) page
 
