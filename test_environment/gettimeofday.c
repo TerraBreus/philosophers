@@ -3,12 +3,11 @@
 
 int	main(void)
 {
-	long	hour;
+	long	u_epoch;
 
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	
-	hour = tv.tv_sec/3600;
-	printf("%ld\n", hour);
+	u_epoch = tv.tv_usec;
 }
