@@ -1,0 +1,22 @@
+- Set up Timer utility and logging framework.
+	Check how/what to log and write a basic draft function
+	Rewrite a better usleep (also why is it better?)
+	Write a timer function to see how much time has passed between.
+
+- Diagram for philosophers' life cycle.
+
+- Pseudocode skeleton for main loop.
+	lost this one in my browser :(
+	A good reason to give it another shot!
+
+- Decide what elements we need for our structures
+	How will I decide this? What information must I read for this?
+	I can look at repo's but that would feel like cheating. 
+	Maybe I should talk with people about it?
+
+-- N O T E S --
+
+Functions needed for initialization.
+- int		create_forks(t_philo *philo1);
+- t_philo	*create_philos(int n_philo); Will return a pointer to the first philosopher.
+- t_philo	*fill_philos(t_philo *philo1, t_data gen_data);
