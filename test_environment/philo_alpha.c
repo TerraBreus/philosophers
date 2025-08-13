@@ -61,13 +61,19 @@ void	ft_error(char *place_of_error, t_data *data)
 		clean_and_exit(data);
 }
 
+// Function returns time in miliseconds
+// 1 second is a 1000 miliseconds.
+// (tv.tv_sec * (long)1000) -> Seconds to miliseconds
+// 1 micro second is 0.001 milisecond.
+// (tv.tv_usec) / (long)1000) -> microseconds to miliseconds.
+
 long	get_time()
 {
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
 		ft_error("gettimeofday", NULL);
-	return ((tv.tv_sec * (long)1000) + (tv.tv_sec) / (long)1000);
+	return ((tv.tv_sec * (long)1000) + (tv.tv_usec) / (long)1000);
 }
 	
 void	*philo_routine(void *philo)
