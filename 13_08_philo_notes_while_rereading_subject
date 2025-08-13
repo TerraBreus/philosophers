@@ -1,0 +1,27 @@
+N amount of philosophers.
+lifecycle: think-eat-sleep
+
+Philosophers need to eat every X amount of seconds (amount_to_die). If they don't, the game is over.
+
+When they are thinking, they are in fact waiting to eat.
+
+Both eating and sleeping are idle states (`usleep` for X amount of seconds)
+
+In order to eat, a philosopher must have both the left fork and the right fork.
+
+Each fork is mutexed, meaning a philosopher cannot grab a fork if another philosopher is using it (mutex lock).
+
+Each philosopher must be its own structure and thread.
+
+A seperate thread will monitor the philosophers to see if any have died.
+It only needs to check if the state is sleeping or thinking. If state is eating, it cannot die.
+
+probably quite some parsing, but for now let's just try to get a philosopher going:
+- It will have its two forks available.
+- It will grab (and lock!) one fork -> print message.
+- It will grab another fork -> print message.
+- It will eat for an amount of time.
+- It will let go of (unlock) the forks.
+- It will sleep for an amount of time. -> print message
+- It will think while trying to grab a fork. -> print message.
+		:
