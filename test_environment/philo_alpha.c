@@ -82,15 +82,42 @@ void	*philo_routine(void *philo)
 	return (philo);
 }
 
-int	main()
+bool	syntax_check(int argc, char **argv)
 {
-	t_philo	*philo_1;
-	t_philo	*philo_2;
-	t_philo	*philo_3;
+	int	i;
 
-	philo_1 = (t_philo *)malloc(sizeof(t_philo));
-	philo_2 = (t_philo *)malloc(sizeof(t_philo));
-	philo_3 = (t_philo *)malloc(sizeof(t_philo));
+	if (argc < 5 || argc > 6)
+		return (false);
 
-	//fill_philosopher();
+	i = 1;
+	while (argv[i] != NULL)
+	{
+		while (*argv[i] != '\0')
+		{
+			if (*argv[i] < '0' || *argv[i] > '9')
+				return (false);
+			argv[i]++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+void	ft_usage(void)
+{
+	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 244);
+	exit(EXIT_FAILURE);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	*data;
+
+	if (syntax_check(argc, argv) == false)
+		ft_usage();
+
+	// Initialize (if valid) the data structure.
+//	data = init_data(data);
+	// initialize the forks and philosopher structures.
+//	init_philo(data);
 }
