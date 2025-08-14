@@ -1,4 +1,4 @@
-#Personal note.
+# Personal note.
 After parsing, I should do a quick check if the attained numbers are nonnegative. If some evil character were to overflow input so that it becomes negative, the program would probably segvault.
 also n_philo cannot be smaller than 1 or bigger than 200!
 
