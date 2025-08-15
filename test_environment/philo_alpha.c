@@ -22,6 +22,7 @@ typedef struct s_data
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	total_eat_limit;
+	int	n_philo;
 	struct s_philo	*philo1;
 }	t_data;
 
@@ -107,8 +108,127 @@ void	ft_usage(void)
 {
 	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 244);
 	exit(EXIT_FAILURE);
+	//technically I want the clean_and_exit function so I don't have leaks.
 }
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zivanov <zivanov@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/12 09:15:16 by zivanov           #+#    #+#             */
+/*   Updated: 2024/10/23 15:54:11 by zivanov          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stddef.h>
+
+/*
+Train of thought:
+1. remove whitespace
+2. check if nmbr negative
+if yes, we make it neg later.
+3. skip initial zeroes
+4. go through string.
+check how many digits2convert
+5. 'for' loop with multplying sign. decimal
+6. Make negative if needed.
+NB: MAX_INT + 1 = MIN_INT
+-2147483648 * -1 = 2147483648
+2147483648 = 2147483647 + 1
+2147483647 + 1 = -2147483648 
+*/
+
+static size_t	ft_get_length(const char *input)
+{
+	size_t	length;
+
+	length = 0;
+	if (*input >= '0' && *input <= '9')
+	{
+		length = 1;
+		input++;
+	}
+	while (*input >= '0' && *input <= '9')
+	{
+		input++;
+		length *= 10;
+	}
+	return (length);
+}
+
+static int	ft_calc_int(const char *str, size_t length, int conv_int)
+{
+	while (length)
+	{
+		conv_int += (*str - '0') * length;
+		length /= 10;
+		str++;
+	}
+	return (conv_int);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int			conv_int;
+	int			is_minus;
+
+	is_minus = 1;
+	conv_int = 0;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			is_minus *= -1;
+		nptr++;
+	}
+	while (*nptr == '0')
+		nptr++;
+	conv_int = ft_calc_int(nptr, ft_get_length(nptr), conv_int);
+	conv_int *= is_minus;
+	return (conv_int);
+}
+
+t_data	*init_data(int argc, char **argv)
+{
+	t_data	*result;
+
+	result = (t_data *)calloc(sizeof(t_data));
+	if (result == NULL)
+		return (NULL);
+	result->start_time = get_time();
+	result->n_philo = ft_atoi(argv[1]);
+	result->time_to_die = ft_atoi(argv[2]);
+	result->time_to_eat = ft_atoi(argv[3]);
+	result->time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		result->total_eat_limit = ft_atoi(argv[5]);
+	else 
+		result->total_eat_limit = -1;
+	return (result);
+}
+
+bool	data_check(int argc, t_data *data)
+{
+	if (data->time_to_die < 0)
+		return (false);
+	if (data->time_to_eat < 0)
+		return (false);
+	if (data->time_to_sleep < 0)
+		return (false);
+	if (data->n_philo < 1)
+		return (false);
+	if (argc == 6)
+	{
+		if (data->total_eat_limit < 0)
+			return (false);
+	}
+	return (true);
+}
+	
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -117,7 +237,9 @@ int	main(int argc, char **argv)
 		ft_usage();
 
 	// Initialize (if valid) the data structure.
-//	data = init_data(data);
+	data = init_data(argc, argv);
+	if (data_check(argc, data) == false)
+		ft_usage();
 	// initialize the forks and philosopher structures.
 //	init_philo(data);
 }
