@@ -106,40 +106,10 @@ bool	syntax_check(int argc, char **argv)
 
 void	ft_usage(void)
 {
-	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 244);
+	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 240);
 	exit(EXIT_FAILURE);
 	//technically I want the clean_and_exit function so I don't have leaks.
 }
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zivanov <zivanov@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 09:15:16 by zivanov           #+#    #+#             */
-/*   Updated: 2024/10/23 15:54:11 by zivanov          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <stddef.h>
-
-/*
-Train of thought:
-1. remove whitespace
-2. check if nmbr negative
-if yes, we make it neg later.
-3. skip initial zeroes
-4. go through string.
-check how many digits2convert
-5. 'for' loop with multplying sign. decimal
-6. Make negative if needed.
-NB: MAX_INT + 1 = MIN_INT
--2147483648 * -1 = 2147483648
-2147483648 = 2147483647 + 1
-2147483647 + 1 = -2147483648 
-*/
 
 static size_t	ft_get_length(const char *input)
 {
@@ -196,7 +166,7 @@ t_data	*init_data(int argc, char **argv)
 {
 	t_data	*result;
 
-	result = (t_data *)calloc(sizeof(t_data));
+	result = (t_data *)malloc(sizeof(t_data));
 	if (result == NULL)
 		return (NULL);
 	result->start_time = get_time();
@@ -228,7 +198,47 @@ bool	data_check(int argc, t_data *data)
 	}
 	return (true);
 }
+
+int	add_philo_to_table(t_philo *top_philo)
+{
+	t_philo	*new_philo;
+
+	new_philo = (t_philo *)malloc(sizeof(t_philo));
+	if (new_philo == NULL)
+		return (-1);
+
+	while (top_philo->philo_r != NULL)
+		top_philo = top_philo->philo_r;
+	top_philo->philo_r = new_philo;
+	new_philo->philo_l = top_philo;
+	return (0);
+}
+
+void	close_table(t_philo *philo)
+{
+	t_philo	*temp;
+
+	temp = philo;
+	while (philo->philo_r != NULL)
+		philo = philo->philo_r;
+	temp->philo_l = philo;
+	philo->philo_r = temp;
+}
+
+int	init_philo(t_data *data)
+{
+	int	i;
 	
+	data->philo1 = (t_philo *)malloc(sizeof(t_philo));
+	if (data->philo1 == NULL)
+		return (-1);
+	i = 0;
+	while (++i < data->n_philo)
+		if (add_philo_to_table(data->philo1) != 0)
+			return (-1);
+	close_table(data->philo1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -238,8 +248,10 @@ int	main(int argc, char **argv)
 
 	// Initialize (if valid) the data structure.
 	data = init_data(argc, argv);
+	if (data == NULL)
+		exit(EXIT_FAILURE);
 	if (data_check(argc, data) == false)
 		ft_usage();
 	// initialize the forks and philosopher structures.
-//	init_philo(data);
+	init_philo(data);
 }
