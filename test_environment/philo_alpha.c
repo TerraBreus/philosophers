@@ -227,6 +227,19 @@ void	close_table(t_philo *philo)
 	philo->philo_r = temp;
 }
 
+int	init_forks(t_data *data)
+{
+	t_philo		*philo;
+
+	philo = data->philo1;
+	while (philo != NULL)
+	{
+		pthread_mutex_init(philo->fork_r, NULL);
+		philo = philo->philo_r;
+	}
+	return (0);
+}
+
 int	init_philo(t_data *data)
 {
 	int	i;
@@ -241,6 +254,8 @@ int	init_philo(t_data *data)
 			return (-1);
 	}
 	//Create forks and Assign values to the philosophers.
+	if (init_forks(data) != 0)
+		return (-1);
 	close_table(data->philo1);
 	return (0);
 }
