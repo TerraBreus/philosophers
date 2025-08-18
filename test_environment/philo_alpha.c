@@ -86,6 +86,7 @@ void	*philo_routine(void *philo)
 bool	syntax_check(int argc, char **argv)
 {
 	int	i;
+	int	j;
 
 	if (argc < 5 || argc > 6)
 		return (false);
@@ -93,11 +94,12 @@ bool	syntax_check(int argc, char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		while (*argv[i] != '\0')
+		j = 0;
+		while (argv[i][j] != '\0')
 		{
-			if (*argv[i] < '0' || *argv[i] > '9')
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (false);
-			argv[i]++;
+			j++;
 		}
 		i++;
 	}
@@ -234,9 +236,13 @@ int	init_philo(t_data *data)
 		return (-1);
 	i = 0;
 	while (++i < data->n_philo)
+	{
 		if (add_philo_to_table(data->philo1) != 0)
 			return (-1);
+	}
+	//Create forks and Assign values to the philosophers.
 	close_table(data->philo1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
