@@ -201,7 +201,7 @@ bool	data_check(int argc, t_data *data)
 	return (true);
 }
 
-int	add_philo_to_table(t_philo *top_philo)
+int	add_philo_to_table(t_philo *top_philo, int id)
 {
 	t_philo	*new_philo;
 
@@ -209,6 +209,7 @@ int	add_philo_to_table(t_philo *top_philo)
 	if (new_philo == NULL)
 		return (-1);
 
+	new_philo->ID = id;
 	while (top_philo->philo_r != NULL)
 		top_philo = top_philo->philo_r;
 	top_philo->philo_r = new_philo;
@@ -234,7 +235,8 @@ int	init_forks(t_data *data)
 	philo = data->philo1;
 	while (philo != NULL)
 	{
-		pthread_mutex_init(philo->fork_r, NULL);
+		if (pthread_mutex_init(philo->fork_r, NULL) == 0)
+			return (-1);
 		philo = philo->philo_r;
 	}
 	return (0);
@@ -247,10 +249,11 @@ int	init_philo(t_data *data)
 	data->philo1 = (t_philo *)malloc(sizeof(t_philo));
 	if (data->philo1 == NULL)
 		return (-1);
+	data->philo1->ID = 1;
 	i = 0;
 	while (++i < data->n_philo)
 	{
-		if (add_philo_to_table(data->philo1) != 0)
+		if (add_philo_to_table(data->philo1, i + 1) != 0)
 			return (-1);
 	}
 	//Create forks and Assign values to the philosophers.
