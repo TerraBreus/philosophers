@@ -7,9 +7,9 @@
 
 typedef enum e_action
 {
+	THINKING,
 	EATING,
 	SLEEPING,
-	THINKING,
 	FORK1,
 	FORK2,
 	DEAD
@@ -231,12 +231,18 @@ void	close_table(t_philo *philo)
 int	init_forks(t_data *data)
 {
 	t_philo		*philo;
+	int		i;
 
+	i = -1;
 	philo = data->philo1;
-	while (philo != NULL)
+	while (++i < data->n_philo)
 	{
-		if (pthread_mutex_init(philo->fork_r, NULL) == 0)
-			return (-1);
+		if (philo != NULL)
+		{
+			if (pthread_mutex_init(philo->fork_r, NULL) == 0)
+				return (-1);
+		}
+		philo->philo_r->fork_l = philo->fork_r;
 		philo = philo->philo_r;
 	}
 	return (0);
@@ -256,10 +262,10 @@ int	init_philo(t_data *data)
 		if (add_philo_to_table(data->philo1, i + 1) != 0)
 			return (-1);
 	}
+	close_table(data->philo1);
 	//Create forks and Assign values to the philosophers.
 	if (init_forks(data) != 0)
 		return (-1);
-	close_table(data->philo1);
 	return (0);
 }
 
