@@ -5,11 +5,13 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+#define USAGE "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n"
+
 typedef enum e_action
 {
+	THINKING,
 	EATING,
 	SLEEPING,
-	THINKING,
 	FORK1,
 	FORK2,
 	DEAD
@@ -22,6 +24,7 @@ typedef struct s_data
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	total_eat_limit;
+	int	n_philo;
 	struct s_philo	*philo1;
 }	t_data;
 
@@ -32,8 +35,8 @@ typedef	struct s_philo
 	pthread_mutex_t	*fork_l;
 	struct s_philo	*philo_r;
 	struct s_philo	*philo_l;
+	long			last_eaten;
 	action		state;
-	long		last_eaten;
 }	t_philo;
 
 //FUNCTIONS
