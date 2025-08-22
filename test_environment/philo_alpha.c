@@ -239,7 +239,10 @@ int	init_forks(t_data *data)
 	{
 		if (philo != NULL)
 		{
-			if (pthread_mutex_init(philo->fork_r, NULL) == 0)
+			philo->fork_r = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+			if (philo->fork_r == NULL)
+				return (-1);
+			if (pthread_mutex_init(philo->fork_r, NULL) != 0)
 				return (-1);
 		}
 		philo->philo_r->fork_l = philo->fork_r;
@@ -269,6 +272,24 @@ int	init_philo(t_data *data)
 	return (0);
 }
 
+void	print_philo(t_data *data)
+{
+	t_philo		*philo;
+	int		i;
+
+	i = -1;
+	philo = data->philo1;
+	while (++i < data->n_philo)
+	{
+		if (philo != NULL)
+		{
+			printf("Philo: %p\n", philo);
+			printf("fork_r: %p\nfork_l: %p\n\n", philo->fork_r, philo->fork_l);
+			philo = philo->philo_r;
+		}
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -284,4 +305,5 @@ int	main(int argc, char **argv)
 		ft_usage();
 	// initialize the forks and philosopher structures.
 	init_philo(data);
+//	print_philo(data);
 }
