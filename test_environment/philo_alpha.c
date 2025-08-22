@@ -106,11 +106,10 @@ bool	syntax_check(int argc, char **argv)
 	return (true);
 }
 
-void	ft_usage(void)
+int	ft_usage(void)
 {
 	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 240);
-	exit(EXIT_FAILURE);
-	//technically I want the clean_and_exit function so I don't have leaks.
+	return (-1)
 }
 
 static size_t	ft_get_length(const char *input)
@@ -296,7 +295,6 @@ int	main(int argc, char **argv)
 
 	if (syntax_check(argc, argv) == false)
 		ft_usage();
-
 	// Initialize (if valid) the data structure.
 	data = init_data(argc, argv);
 	if (data == NULL)
