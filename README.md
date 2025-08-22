@@ -2,6 +2,8 @@
 After parsing, I should do a quick check if the attained numbers are nonnegative. If some evil character were to overflow input so that it becomes negative, the program would probably segvault.
 also n_philo cannot be smaller than 1 or bigger than 200!
 
+Update: Philosophers need to be synchronized so they all start together! Philosopher 1 should start at the same time as philosopher 200. A simple common variable that gets checked should manage this. The manager then gets initialized after the philosophers and changes this variable so that the philosophers can start.
+
 # Notes from the subject file.
 ## Overview
 - One or more philosophers. -> 1+. ft_atoi, no negative numbers.
