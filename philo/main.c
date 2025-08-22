@@ -15,11 +15,10 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	t_philo	*philo1;
 
-	syntax_checl(argc, argv);
-	data = init_data(argv);
-	philo1 = init_philo(&data);
-	start_philo(data, philo1);
-	clean_and_exit(data);
+	if	(init_data(argc, argv, &data) != 0)
+		exit(EXIT_FAILURE);
+	if (init_philo(data) != NULL)
+		exit(EXIT_FAILURE);
+	
 }
