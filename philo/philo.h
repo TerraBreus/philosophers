@@ -48,7 +48,43 @@ int	print_log(int timestamp, int philo_n, action action);
 //	In case of errors, calls clean_and_exit if data != NULL.
 void	ft_error(char *place_of_error, t_data *data);
 
+
+int	init_philo(t_data *data);
+int	init_forks(t_data *data);
+void	close_table(t_philo *philo);
+int	add_philo_to_table(t_philo *top_philo, int id);
+bool	data_check(int argc, t_data *data);
+t_data	*init_data(int argc, char **argv);
+int	ft_atoi(const char *nptr);
+static int	ft_calc_int(const char *str, size_t length, int conv_int);
+static size_t	ft_get_length(const char *input);
+int	ft_usage(void);
+bool	syntax_check(int argc, char **argv);
+void	*philo_routine(void *philo);
+void	ft_error(char *place_of_error, t_data *data);
+void	clean_and_exit(t_data *data);
+
+
+// 			-- D E B U G G I N G --
+// 			functions for debugging while program is in development.
+
+void	print_philo(t_data *data);
+//	Prints the memory adresses of the philosopher and 
+//	(the adresses of) their corresponding forks.
+
+// 			-- I N I T I A L I Z A T I O N --
+// 			mallocs, syntax checks,
+// 			creation of circular loops etc.
+
+// 			-- U S E R -- U T I L S --
+// 			functions that give the user information about the program.
+
+void	ft_error(char *place_of_error, t_data *data);
+
+// -- P R O G R A M M E R -- U T I L S --
+// util functions that make the life of a programmer liveable.
+
 //	Returns the current time since the epoch in ms using 'gettimeofday'.
 long	get_time();
 
-
+// PHILOSOPHER LIFESTYLE
