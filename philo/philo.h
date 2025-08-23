@@ -66,14 +66,14 @@ bool	syntax_check(int argc, char **argv);
 // 			-- U S E R -- U T I L S --
 // 			functions that give the user information about the program.
 
-void	ft_error(char *place_of_error, t_data *data);
+void	ft_error(char *place_of_error, t_data *data);	//TODO
 //	In case of errors, calls clean_and_exit if data != NULL.
 
-int	ft_usage(void);
+int	ft_usage(void);	//TODO: implement macro for different usage errors
 //	prints message to the user on how to
 //	(correctly) start the program.
 
-int	print_log(int timestamp, int philo_n, action action);
+int	print_log(int timestamp, int philo_n, action action);	//TODO
 //	for whenever a philosopher switches state, a message must be printed
 //	with the time, the philosopher in question, and the changed state (action).
 
@@ -87,8 +87,8 @@ long	get_time();
 int	ft_atoi(const char *nptr);
 //	Converts a string of numbers into an actual integer.
 
-void	clean_and_exit(t_data *data);
+void	clean_and_exit(t_data *data);	//TODO
 
 // 			-- P H I L O S O P H E R -- L I F E S T Y L E --
 
-void	*philo_routine(void *philo);
+void	*philo_routine(void *philo);	//TODO
