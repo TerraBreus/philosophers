@@ -109,7 +109,7 @@ bool	syntax_check(int argc, char **argv)
 int	ft_usage(void)
 {
 	write(STDERR_FILENO, "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n", 240);
-	return (-1)
+	return (-1);
 }
 
 static size_t	ft_get_length(const char *input)
@@ -265,7 +265,6 @@ int	init_philo(t_data *data)
 			return (-1);
 	}
 	close_table(data->philo1);
-	//Create forks and Assign values to the philosophers.
 	if (init_forks(data) != 0)
 		return (-1);
 	return (0);
