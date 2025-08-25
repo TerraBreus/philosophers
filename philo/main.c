@@ -12,13 +12,23 @@
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+t_data	*init_all(int argc, char **argv)
 {
 	t_data	*data;
 
-	if	(init_data(argc, argv, &data) != 0)
-		exit(EXIT_FAILURE);
-	if (init_philo(data) != NULL)
-		exit(EXIT_FAILURE);
-	
+	if (syntax_check(argc, argv) == false)
+		ft_usage();	//TODO
+	data = init_data(argc, argv);
+	if (data_check(argc, data) == false)
+		ft_usage();	//TODO
+	init_philo(data);
+	return (data);
 }
+
+int	main(int argc, char **argv)
+{
+	t_data	*data;
+	data = init_all(argc, argv);
+	if (data == NULL)
+		exit(EXIT_FAILURE);	//TODO
+	}
