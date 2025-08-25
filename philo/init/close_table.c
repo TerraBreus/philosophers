@@ -1,3 +1,5 @@
+#include "philo.h"
+
 void	close_table(t_philo *philo)
 {
 	t_philo	*temp;

@@ -1,3 +1,5 @@
+#include "philo.h"
+
 long	get_time()
 {
 	struct timeval	tv;

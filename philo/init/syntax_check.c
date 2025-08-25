@@ -1,3 +1,5 @@
+#include "philo.h"
+
 bool	syntax_check(int argc, char **argv)
 {
 	int	i;

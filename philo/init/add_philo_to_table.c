@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	add_philo_to_table(t_philo *top_philo, int id)
 {
 	t_philo	*new_philo;

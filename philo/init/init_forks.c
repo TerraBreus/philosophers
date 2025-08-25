@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	init_forks(t_data *data)
 {
 	t_philo		*philo;

@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	init_philo(t_data *data)
 {
 	int	i;

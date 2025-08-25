@@ -1,3 +1,5 @@
+#include "philo.h"
+
 static size_t	ft_get_length(const char *input)
 {
 	size_t	length;

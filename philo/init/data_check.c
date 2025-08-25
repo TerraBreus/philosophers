@@ -1,3 +1,5 @@
+#include "philo.h"
+
 bool	data_check(int argc, t_data *data)
 {
 	if (data->time_to_die < 0)

@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	init_data(int argc, char **argv)
 {
 	if (syntax_check(argc, argv) == false)

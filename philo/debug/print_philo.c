@@ -1,3 +1,4 @@
+#include "philo.h"
 
 void	print_philo(t_data *data)
 {
