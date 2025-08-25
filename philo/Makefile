@@ -33,7 +33,7 @@ SRC := \
 	$(addprefix prog_utils/, $(SRC_PROG_UTILS)) \
 	$(addprefix debug/, $(SRC_DEBUG))
 
-OBJ = $(addprefix obj, $(SRC:.c=.o))
+OBJ = $(addprefix obj/, $(SRC:.c=.o))
 
 all : $(NAME)
 
@@ -42,7 +42,7 @@ $(NAME) : $(OBJ)
 
 obj/%.o : %.c 
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $^ -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	rm -rf $(OBJ)
