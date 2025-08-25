@@ -1,6 +1,6 @@
 NAME := philo
 CC := cc
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra -Iinc
 DEBUG := -g
 SANITIZE := -fsanitize=address
 
