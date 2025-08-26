@@ -82,6 +82,9 @@ int	print_log(int timestamp, int philo_n, action action);	//TODO
 // 			-- P R O G R A M M E R -- U T I L S --
 //			util functions that make the life of a programmer liveable.
 
+int	ft_get_len(char *str);
+//	simple string iterator returning length of string in int.
+
 long	get_time();
 //	Returns the current time since the epoch in ms using 'gettimeofday'.
 
