@@ -34,6 +34,7 @@ typedef struct s_data
 typedef	struct s_philo
 {
 	int	ID;
+	pthread_t	tid;
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	struct s_philo	*philo_r;
