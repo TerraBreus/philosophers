@@ -1,13 +1,21 @@
 #include "philo.h"
 
-int	init_data(int argc, char **argv)
+t_data	*init_data(int argc, char **argv)
 {
+	t_data	*result;
+
 	if (syntax_check(argc, argv) == false)
+	{
 		ft_usage();
-	// Initialize (if valid) the data structure.
-	data = init_data(argc, argv);
-	if (data == NULL)
-		exit(EXIT_FAILURE);
-	if (data_check(argc, data) == false)
+		return (NULL);
+	}
+	result = init_data(argc, argv);
+	if (result == NULL)
+		return (NULL);	
+	if (data_check(argc, result) == false)
+	{
 		ft_usage();
+		return (NULL);
+	}
+	return (result);
 }
