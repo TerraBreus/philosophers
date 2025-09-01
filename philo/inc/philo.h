@@ -7,7 +7,9 @@
 #include <sys/time.h>
 
 //xXx M A C R O S
-#define USAGE "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\nMax amount of philosophers is 200.\n"
+#define GEN_USAGE "Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, program will run till infinitely (unless a philosopher dies)\n\n"
+
+#define USAGE_MAX "Max amount of philosophers is 200.\n"
 
 //xXx S T R U C T U R E S
 typedef enum e_action
@@ -43,6 +45,7 @@ typedef	struct s_philo
 	struct s_philo	*philo_r;
 	struct s_philo	*philo_l;
 	long			last_eaten;
+	long		eat_count;
 	action		state;
 }	t_philo;
 
