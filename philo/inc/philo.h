@@ -11,6 +11,12 @@
 #define USAGE_MAX "Max amount of philosophers is 200.\n"
 #define USAGE_INPUT "No non-numerical characters allowed\n"
 
+#define EAT "is eating.\n"
+#define FORK "has taken a fork.\n"
+#define DIED "has died.\n"
+#define SLEEP "is sleeping.\n"
+#define THINK "is thinking.\n"
+
 //xXx S T R U C T U R E S
 typedef enum e_action
 {
