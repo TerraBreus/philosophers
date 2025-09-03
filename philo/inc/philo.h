@@ -36,6 +36,8 @@ typedef struct s_data
 	int	time_to_sleep;
 	int	total_eat_limit;
 	int	n_philo;
+	long	time_of_death;
+	int	dead_philo;
 	struct s_philo	*philo1;
 }	t_data;
 
@@ -104,7 +106,6 @@ int	ft_atoi(const char *nptr);
 //	Converts a string of numbers into an actual integer.
 
 void	clean_and_exit(t_data *data);	//TODO
-
 // 			-- P H I L O S O P H E R -- L I F E S T Y L E --
 
 void	*philo_routine(void *philo);	//TODO
