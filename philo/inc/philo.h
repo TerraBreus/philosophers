@@ -106,6 +106,10 @@ int	ft_atoi(const char *nptr);
 //	Converts a string of numbers into an actual integer.
 
 void	clean_and_exit(t_data *data);	//TODO
+
+void	ft_usleep(long time);
+//	sleeps for (at least) 'time' amount of microseconds.
+
 // 			-- P H I L O S O P H E R -- L I F E S T Y L E --
 
 void	*philo_routine(void *philo);	//TODO
