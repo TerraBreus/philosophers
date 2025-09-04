@@ -110,6 +110,9 @@ void	clean_and_exit(t_data *data);	//TODO
 void	ft_usleep(long time);
 //	sleeps for (at least) 'time' amount of microseconds.
 
+void	ft_msleep(long time);
+//	similar to usleep but in miliseconds.
+
 // 			-- P H I L O S O P H E R -- L I F E S T Y L E --
 
 void	*philo_routine(void *philo);	//TODO
