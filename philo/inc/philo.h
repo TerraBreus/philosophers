@@ -55,6 +55,7 @@ typedef	struct s_philo
 	long			last_eaten;
 	long		eat_count;
 	action		state;
+	t_data	*data;
 }	t_philo;
 
 //xXx F U N C T I O N S -
@@ -88,7 +89,7 @@ int	ft_usage(void);	//TODO: implement macro for different usage errors
 //	prints message to the user on how to
 //	(correctly) start the program.
 
-int	print_log(int timestamp, int philo_n, action action);	//TODO
+void	print_log(long timestamp, t_philo *philo, char *action);	//TODO
 //	for whenever a philosopher switches state, a message must be printed
 //	with the time, the philosopher in question, and the changed state (action).
 

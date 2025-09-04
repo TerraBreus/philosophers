@@ -8,6 +8,7 @@ int	init_philo(t_data *data)
 	if (data->philo1 == NULL)
 		return (-1);
 	data->philo1->ID = 1;
+	data->philo1->data = data;
 	i = 0;
 	while (++i < data->n_philo)
 	{
