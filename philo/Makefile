@@ -26,11 +26,16 @@ SRC_PROG_UTILS = \
 SRC_DEBUG = \
 	print_philo.c
 
+SRC_ROUTINE = \
+	      philo_routine.c	\
+	      thread_init.c	\
+
 SRC := \
 	main.c \
-	$(addprefix init/, $(SRC_INIT)) \
-	$(addprefix user_utils/, $(SRC_USER_UTILS)) \
-	$(addprefix prog_utils/, $(SRC_PROG_UTILS)) \
+	$(addprefix init/, $(SRC_INIT)) 		\
+	$(addprefix user_utils/, $(SRC_USER_UTILS))	\
+	$(addprefix prog_utils/, $(SRC_PROG_UTILS))	\
+	$(addprefix, routine/, $(SRC_ROUTINE))		\
 	$(addprefix debug/, $(SRC_DEBUG))
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
