@@ -7,6 +7,7 @@ int	thread_init(t_data *data)
 
 	philo_n = data->philo1;
 	i = -1;
+	data->start_time = get_time();
 	while (++i < data->n_philo)
 	{
 		if (i % 2)

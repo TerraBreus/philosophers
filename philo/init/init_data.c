@@ -7,7 +7,6 @@ t_data	*init_data(int argc, char **argv)
 	result = (t_data *)malloc(sizeof(t_data));
 	if (result == NULL)
 		return (NULL);
-	result->start_time = get_time();
 	result->n_philo = ft_atoi(argv[1]);
 	result->time_to_die = ft_atoi(argv[2]);
 	result->time_to_eat = ft_atoi(argv[3]);
