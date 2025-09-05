@@ -20,6 +20,7 @@ SRC_USER_UTILS = \
 
 SRC_PROG_UTILS = \
 	clean_and_exit.c	\
+	ft_usleep.c		\
 	ft_atoi.c		\
 	get_time.c
 
@@ -35,7 +36,7 @@ SRC := \
 	$(addprefix init/, $(SRC_INIT)) 		\
 	$(addprefix user_utils/, $(SRC_USER_UTILS))	\
 	$(addprefix prog_utils/, $(SRC_PROG_UTILS))	\
-	$(addprefix, routine/, $(SRC_ROUTINE))		\
+	$(addprefix routine/, $(SRC_ROUTINE))		\
 	$(addprefix debug/, $(SRC_DEBUG))
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
