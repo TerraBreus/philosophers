@@ -114,6 +114,11 @@ void	ft_usleep(long time);
 void	ft_msleep(long time);
 //	similar to usleep but in miliseconds.
 
-// 			-- P H I L O S O P H E R -- L I F E S T Y L E --
+// 			-- T H R E A D S  &  R O U T I N E --
 
 void	*philo_routine(void *philo);	//TODO
+//	Instructions for philosopher threads.
+
+int	thread_init(t_data *data);
+//	pthread_create for each philosopher thread.	//TODO: include supervisor.
+//	Also keeps track of start of simulation. 
