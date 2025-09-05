@@ -50,26 +50,6 @@ void	*philo_routine(void *ptr)
 	}
 	return (NULL);
 }
-//
-//then try to grab other fork
-//	lock mutex
-//	print message
-//else
-//	sleep 5ms and try again?
-//
-	//change state to EATING
-	//	print message
-	//	sleep for time2eat
-	//
-	//unlock both forks
-	//change state to SLEEPING
-	//	print message
-	//	sleep for time2sleep
-	//
-	//change state to thinking
-	//	print message
-	//	set time of last_eaten
-}
 
 //The following code should be in a while loop like
 //
