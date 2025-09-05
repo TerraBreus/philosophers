@@ -28,4 +28,5 @@ int	main(int argc, char **argv)
 	data = init_all(argc, argv);
 	if (data == NULL)
 		exit(EXIT_FAILURE);	//TODO
-	}
+	thread_init(data);		//TODO could fail so need save failures.
+}
