@@ -15,6 +15,6 @@ int	ft_get_len(char *str)	//TODO put in own file.
 
 int	ft_usage(void)
 {
-	write(STDERR_FILENO, USAGE, ft_get_len(USAGE));
+	write(STDERR_FILENO, GEN_USAGE, ft_get_len(GEN_USAGE));
 	return (-1);
 }
