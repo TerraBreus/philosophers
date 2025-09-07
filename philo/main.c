@@ -28,5 +28,7 @@ int	main(int argc, char **argv)
 	data = init_all(argc, argv);
 	if (data == NULL)
 		exit(EXIT_FAILURE);	//TODO
+	print_philo(data);
 	thread_init(data);		//TODO could fail so need save failures.
+	thread_join(data);
 }

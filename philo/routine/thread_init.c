@@ -10,8 +10,6 @@ int	thread_init(t_data *data)
 	data->start_time = get_time();
 	while (++i < data->n_philo)
 	{
-		if (i % 2)
-			ft_msleep(10);	//TODO: dynamic depending on time2die?
 		pthread_create(&(philo_n->tid), NULL, philo_routine,(void *) philo_n);
 
 	}
