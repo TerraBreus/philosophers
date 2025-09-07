@@ -4,7 +4,7 @@ int	init_philo(t_data *data)
 {
 	int	i;
 	
-	data->philo1 = (t_philo *)malloc(sizeof(t_philo));
+	data->philo1 = (t_philo *)calloc(1, sizeof(t_philo));	//TODO am I allowed calloc?
 	if (data->philo1 == NULL)
 		return (-1);
 	data->philo1->ID = 1;

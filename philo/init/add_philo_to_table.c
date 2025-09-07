@@ -6,7 +6,7 @@ int	add_philo_to_table(t_philo *top_philo, int id)
 	t_philo	*new_philo;
 
 	data = top_philo->data;
-	new_philo = (t_philo *)malloc(sizeof(t_philo));
+	new_philo = (t_philo *)calloc(1, sizeof(t_philo));	//TODO calloc or malloc?
 	if (new_philo == NULL)
 		return (-1);
 
