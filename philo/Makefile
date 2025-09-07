@@ -30,6 +30,7 @@ SRC_DEBUG = \
 SRC_ROUTINE = \
 	      philo_routine.c	\
 	      thread_init.c	\
+	      thread_join.c
 
 SRC := \
 	main.c \

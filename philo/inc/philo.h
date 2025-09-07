@@ -122,3 +122,6 @@ void	*philo_routine(void *philo);	//TODO
 int	thread_init(t_data *data);
 //	pthread_create for each philosopher thread.	//TODO: include supervisor.
 //	Also keeps track of start of simulation. 
+
+int	thread_join(t_data *data);
+//	pthread_join() waits for all threads to finish.
