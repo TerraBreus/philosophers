@@ -11,7 +11,7 @@ int	thread_init(t_data *data)
 	while (++i < data->n_philo)
 	{
 		pthread_create(&(philo_n->tid), NULL, philo_routine,(void *) philo_n);
-
+		philo_n = philo_n->philo_r;
 	}
 	return (0);
 }
