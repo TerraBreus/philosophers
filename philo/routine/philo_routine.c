@@ -19,7 +19,7 @@ static void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->lock);
 
 	print_log(get_time(), philo, EAT);
-	ft_msleep(philo->data->time_to_eat);
+	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(philo->fork_l);
 	pthread_mutex_unlock(philo->fork_r);
 }
@@ -27,7 +27,7 @@ static void	ft_eat(t_philo *philo)
 static void	ft_sleep(t_philo *philo)
 {
 	print_log(get_time(), philo, SLEEP);
-	ft_msleep(philo->data->time_to_sleep);
+	ft_usleep(philo->data->time_to_sleep);
 }
 
 static void	ft_think(t_philo *philo)

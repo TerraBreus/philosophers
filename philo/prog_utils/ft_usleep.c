@@ -19,11 +19,3 @@ void	ft_usleep(long time)
 		time_left = time - (get_time() - start);
 	}
 }
-
-void	ft_msleep(long time)
-{
-	unsigned long	utime;
-
-	utime = time * 1000;
-	ft_usleep(utime);
-}
