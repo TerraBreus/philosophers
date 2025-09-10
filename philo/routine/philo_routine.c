@@ -14,7 +14,7 @@ static void	ft_eat(t_philo *philo)
 	print_log(get_time(), philo, FORK);
 	pthread_mutex_lock(philo->fork_r);
 
-	pthread_mutex_lock(philo->lock);		//TODO uninitilaized.
+	pthread_mutex_lock(philo->lock);
 	philo->last_eaten = get_time() - philo->data->start_time;
 	pthread_mutex_unlock(philo->lock);
 
@@ -42,8 +42,15 @@ void	*philo_routine(void *ptr)
 	philo = (t_philo *)ptr;
 	//Wait for startsignal
 	philo->last_eaten = philo->data->start_time;
-	while (true)	//TODO
+	while (true)
 	{
+		pthread_mutex_lock(philo->data->lock);
+		if (philo->data->should_stop == true)
+		{
+			pthread_mutex_unlock(philo->data->lock);
+			break;
+		}
+		pthread_mutex_unlock(philo->data->lock);	//TODO: there must be a better way for this
 		ft_eat(philo);
 		ft_sleep(philo);
 		ft_think(philo);
