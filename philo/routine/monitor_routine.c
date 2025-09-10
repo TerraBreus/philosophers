@@ -6,6 +6,7 @@ void	*ober_routine(void *ptr)
 	t_philo	*philo;
 
 	data = (t_data *)ptr;
+	ft_usleep(data->time_to_die / 2);
 	philo = data->philo1;
 	while (true)
 	{
