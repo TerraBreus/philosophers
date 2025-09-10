@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void	*monitor_routine(void *ptr)
+void	*ober_routine(void *ptr)
 {
 	t_data	*data;
 	t_philo	*philo;
