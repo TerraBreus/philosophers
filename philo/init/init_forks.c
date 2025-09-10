@@ -6,7 +6,12 @@ int	init_forks(t_data *data)
 {
 	t_philo		*philo;
 	int		i;
-
+	
+	data->lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (data->lock == NULL)
+		return (-1);
+	if (pthread_mutex_init(data->lock, NULL) != 0)
+		return (-1);
 	i = -1;
 	philo = data->philo1;
 	while (++i < data->n_philo)
