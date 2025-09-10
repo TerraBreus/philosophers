@@ -40,7 +40,6 @@ void	*philo_routine(void *ptr)
 	t_philo *philo;
 
 	philo = (t_philo *)ptr;
-	//Wait for startsignal
 	philo->last_eaten = philo->data->start_time;
 	while (true)
 	{
@@ -57,11 +56,3 @@ void	*philo_routine(void *ptr)
 	}
 	return (NULL);
 }
-
-//The following code should be in a while loop like
-//
-//while (data->no_dead_philo == TRUE)
-//	philo_routine_even(philo);
-//
-//if a philosopher dies, the manager can switch this variable
-//(however it might need to mutex it so nothing happens?)
