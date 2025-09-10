@@ -34,3 +34,5 @@ While (true)
         i++;
         philo = philo->philo_r;
 
+NEXT TIME
+Implement thread initialization of the ober and try to run it!
