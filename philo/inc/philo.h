@@ -39,6 +39,8 @@ typedef struct s_data
 	long	time_of_death;
 	int	dead_philo;
 	struct s_philo	*philo1;
+	pthread_mutex_t	*lock;
+	bool	should_stop;
 }	t_data;
 
 typedef	struct s_philo
