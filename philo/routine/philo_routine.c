@@ -15,7 +15,7 @@ static void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(philo->fork_r);
 
 	pthread_mutex_lock(philo->lock);
-	philo->last_eaten = get_time() - philo->data->start_time;
+	philo->last_eaten = get_time();
 	pthread_mutex_unlock(philo->lock);
 
 	print_log(get_time(), philo, EAT);
