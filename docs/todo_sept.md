@@ -36,3 +36,21 @@ While (true)
 
 NEXT TIME
 Implement thread initialization of the ober and try to run it!
+
+---
+
+It seems a philosopher can die even though it is eating. Have a look at this log:
+
+./philo 5 23 23 23
+
+0 1 has taken a fork.
+1 2 has taken a fork.
+1 2 is eating.
+1 4 has taken a fork.
+1 4 is eating.
+11 2 has died.              *How come it dies here???*
+24 5 has taken a fork.
+24 3 has taken a fork.
+24 3 is eating.
+24 1 is eating.
+47 5 is eating.   
