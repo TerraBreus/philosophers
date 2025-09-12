@@ -4,6 +4,7 @@ void	*ober_routine(void *ptr)
 {
 	t_data	*data;
 	t_philo	*philo;
+	long	current_time;
 
 	data = (t_data *)ptr;
 	ft_usleep(data->time_to_die / 2);
@@ -11,12 +12,15 @@ void	*ober_routine(void *ptr)
 	while (true)
 	{
 		pthread_mutex_lock(philo->lock);
-		if (get_time() - philo->last_eaten>= data->time_to_die)
+		current_time = get_time();
+		print_timelog(current_time, philo, data); //TODO
+		if (current_time - philo->last_eaten >= data->time_to_die)
 		{
 			pthread_mutex_unlock(philo->lock);
 			pthread_mutex_lock(data->lock);
 			data->should_stop = true;
 			pthread_mutex_unlock(data->lock);
+			print_log(current_time, philo, DIED);
 			break;
 		}
 		pthread_mutex_unlock(philo->lock);
