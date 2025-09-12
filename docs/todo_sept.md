@@ -54,3 +54,6 @@ It seems a philosopher can die even though it is eating. Have a look at this log
 24 3 is eating.
 24 1 is eating.
 47 5 is eating.   
+
+
+AHA! It seems that philo->last_eaten gets reset not from current start_time.
