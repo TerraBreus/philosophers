@@ -25,7 +25,8 @@ SRC_PROG_UTILS = \
 	get_time.c
 
 SRC_DEBUG = \
-	print_philo.c
+	print_philo.c		\
+	print_timelog.c
 
 SRC_ROUTINE = \
 	      philo_routine.c	\

@@ -69,6 +69,8 @@ void	print_philo(t_data *data);
 //	Prints the memory adresses of the philosopher and 
 //	(the adresses of) their corresponding forks.
 
+void	print_timelog(long current_time, t_philo *philo, t_data *data);
+//	small debugging tool to see certain values of philo and data.
 // 			-- I N I T I A L I Z A T I O N --
 // 			mallocs, syntax checks,
 // 			creation of circular loops etc.
@@ -114,6 +116,9 @@ void	ft_usleep(long time);
 //	sleeps for (at least) 'time' amount of microseconds.
 
 // 			-- T H R E A D S  &  R O U T I N E --
+void	*ober_routine(void *data);
+//	Instructions for the supervisor/monitor/ober
+//	function checks whether philosopher is/should have died.
 
 void	*philo_routine(void *philo);	//TODO
 //	Instructions for philosopher threads.
