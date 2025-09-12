@@ -35,6 +35,7 @@ static void	ft_think(t_philo *philo)
 	print_log(get_time(), philo, THINK);
 }
 
+/*
 void	*philo_routine(void *ptr)
 {
 	t_philo *philo;
@@ -52,6 +53,43 @@ void	*philo_routine(void *ptr)
 		pthread_mutex_unlock(philo->data->lock);	//TODO: there must be a better way for this
 		ft_eat(philo);
 		ft_sleep(philo);
+		ft_think(philo);
+	}
+	return (NULL);
+}
+*/
+
+bool	should_stop(bool stop_sign, pthread_mutex_t *lock)
+{
+	bool	result;
+
+	result = false;
+	pthread_mutex_lock(lock);
+	if (stop_sign == true)
+		result = true;
+	pthread_mutex_unlock(lock);
+	return (result);
+}
+
+void	*philo_routine(void *ptr)
+{
+	t_philo	*philo;
+	t_data	*data;
+
+	philo = (t_philo *)ptr;
+	philo->last_eaten = philo->data->start_time;
+	data = philo->data;
+
+	while (true)
+	{
+		if (should_stop(data->should_stop, data->lock) == true)
+			break;
+		ft_eat(philo);
+		if (should_stop(data->should_stop, data->lock) == true)
+			break;
+		ft_sleep(philo);
+		if (should_stop(data->should_stop, data->lock) == true)
+			break;
 		ft_think(philo);
 	}
 	return (NULL);
