@@ -13,7 +13,7 @@ void	*ober_routine(void *ptr)
 	{
 		pthread_mutex_lock(philo->lock);
 		current_time = get_time();
-		print_timelog(current_time, philo, data); //TODO
+		//print_timelog(current_time, philo, data); //TODO
 		if (current_time - philo->last_eaten >= data->time_to_die)
 		{
 			pthread_mutex_unlock(philo->lock);
