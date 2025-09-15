@@ -16,6 +16,7 @@ static void	ft_eat(t_philo *philo)
 
 	pthread_mutex_lock(philo->lock);
 	philo->last_eaten = get_time();
+	philo->eat_count++;
 	pthread_mutex_unlock(philo->lock);
 
 	print_log(get_time(), philo, EAT);
@@ -75,5 +76,6 @@ void	*philo_routine(void *ptr)
 			break;
 		ft_think(philo);
 	}
+	printf("meal_count %d\n", philo->eat_count);
 	return (NULL);
 }
