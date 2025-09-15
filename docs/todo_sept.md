@@ -70,6 +70,10 @@ Checking whether philosopher has died. Should only print a message when all phil
 
 TODO still
 monitor for amount of philosophers eaten -> should_stop variable must be adressed
+thread deletion when everything is done (also for monitor and ober)
+function to clean everything if anything fails.
+check for leaks etc.
+chcek roadmap for missed items.
 make single philo scenario.
 create a norminette branch
 big ass fucking clean up for norminette lol.
