@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdatomic.h>
 #include <sys/time.h>
 
 //xXx M A C R O S
