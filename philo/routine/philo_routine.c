@@ -35,30 +35,6 @@ static void	ft_think(t_philo *philo)
 	print_log(get_time(), philo, THINK);
 }
 
-/*
-void	*philo_routine(void *ptr)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)ptr;
-	philo->last_eaten = philo->data->start_time;
-	while (true)
-	{
-		pthread_mutex_lock(philo->data->lock);
-		if (philo->data->should_stop == true)
-		{
-			pthread_mutex_unlock(philo->data->lock);
-			break;
-		}
-		pthread_mutex_unlock(philo->data->lock);	//TODO: there must be a better way for this
-		ft_eat(philo);
-		ft_sleep(philo);
-		ft_think(philo);
-	}
-	return (NULL);
-}
-*/
-
 bool	should_stop(bool stop_sign, pthread_mutex_t *lock)
 {
 	bool	result;
