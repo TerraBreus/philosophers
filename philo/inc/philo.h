@@ -56,7 +56,7 @@ typedef	struct s_philo
 	struct s_philo	*philo_r;
 	struct s_philo	*philo_l;
 	long			last_eaten;
-	long		eat_count;
+	int		eat_count;
 	action		state;
 	t_data	*data;
 }	t_philo;
@@ -120,6 +120,11 @@ void	ft_usleep(long time);
 void	*ober_routine(void *data);
 //	Instructions for the supervisor/monitor/ober
 //	function checks whether philosopher is/should have died.
+
+void	*monitor_routine(void *data);
+//	For optimization, this thread only starts if a fourth paramater (total eat limit)
+//	has been given. Function then checks whether any of the philosophers
+//	has reached this limit.
 
 void	*philo_routine(void *philo);	//TODO
 //	Instructions for philosopher threads.
