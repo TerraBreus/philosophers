@@ -65,3 +65,6 @@ AHA! It seems that philo->last_eaten gets reset not from current start_time.
 - Usage of atomic variables instead of constant mutex locks -> only forks need to be mutexed really.
 - Philosophers keep hanging somewhere. They are not joining/ending properly.
 
+in print_log
+Checking whether philosopher has died. Should only print a message when all philo are still alive
+
