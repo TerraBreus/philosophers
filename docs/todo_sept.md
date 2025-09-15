@@ -62,9 +62,15 @@ AHA! It seems that philo->last_eaten gets reset not from current start_time.
 
 15-09-25
 - Let uneven philosophers sleep for a couple of seconds to avoid deadlocking. -> DONE
-- Usage of atomic variables instead of constant mutex locks -> only forks need to be mutexed really.
-- Philosophers keep hanging somewhere. They are not joining/ending properly.
+- Usage of atomic variables instead of constant mutex locks -> only forks need to be mutexed really. (meh)
+- Philosophers keep hanging somewhere. They are not joining/ending properly. -> DONE
 
 in print_log
-Checking whether philosopher has died. Should only print a message when all philo are still alive
+Checking whether philosopher has died. Should only print a message when all philo are still alive except for the message stating a philosopher has died.
+
+TODO still
+monitor for amount of philosophers eaten -> should_stop variable must be adressed
+make single philo scenario.
+create a norminette branch
+big ass fucking clean up for norminette lol.
 
