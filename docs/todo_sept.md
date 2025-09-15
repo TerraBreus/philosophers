@@ -61,7 +61,7 @@ AHA! It seems that philo->last_eaten gets reset not from current start_time.
 ---
 
 15-09-25
-- Let uneven philosophers sleep for a couple of seconds to avoid deadlocking.
+- Let uneven philosophers sleep for a couple of seconds to avoid deadlocking. -> DONE
 - Usage of atomic variables instead of constant mutex locks -> only forks need to be mutexed really.
 - Philosophers keep hanging somewhere. They are not joining/ending properly.
 
