@@ -29,10 +29,11 @@ SRC_DEBUG = \
 	print_timelog.c
 
 SRC_ROUTINE = \
-	      philo_routine.c	\
-	      thread_init.c	\
-	      thread_join.c	\
-	      ober_routine.c
+	philo_routine.c	\
+	thread_init.c	\
+	thread_join.c	\
+	ober_routine.c	\
+	monitor_routine.c
 
 SRC := \
 	main.c \
