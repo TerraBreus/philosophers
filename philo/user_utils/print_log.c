@@ -8,6 +8,8 @@ void	print_log(long timestamp,t_philo *philo, char *action)
 	pthread_mutex_lock(philo->data->lock);
 	if (philo->data->should_stop == false)
 		printf("%lu %i %s", time, philo->ID, action);
+	if (*(action + 4) == 'd')
+		printf("%lu %i %s", time, philo->ID, action);
 	pthread_mutex_unlock(philo->data->lock);
 }
 
