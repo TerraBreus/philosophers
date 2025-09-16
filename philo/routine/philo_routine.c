@@ -58,12 +58,7 @@ void	*philo_routine(void *ptr)
 	data = philo->data;
 
 	if (philo->ID % 2)
-	{
-		if ((data->time_to_die / 10) > 10)
-			ft_usleep(10);
-		else
-			ft_usleep(data->time_to_die / 2);
-	}
+		ft_usleep(1);
 	while (true)
 	{
 		if (should_stop(data->should_stop, data->lock) == true)
