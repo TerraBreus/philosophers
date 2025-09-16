@@ -30,4 +30,5 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);	//TODO
 	thread_init(data);		//TODO could fail so need save failures.
 	thread_join(data);
+	cleanup_program(data);
 }
