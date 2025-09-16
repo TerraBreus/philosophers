@@ -40,7 +40,7 @@ void	cleanup_program(t_data *data)
 	{
 		pthread_mutex_destroy(data->lock);
 		free(data->lock);
-		data->lock = NULL
+		data->lock = NULL;
 	}
 	free(data);
 }
