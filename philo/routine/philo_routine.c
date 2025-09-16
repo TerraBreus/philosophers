@@ -76,6 +76,5 @@ void	*philo_routine(void *ptr)
 			break;
 		ft_think(philo);
 	}
-	printf("meal_count %d\n", philo->eat_count);
 	return (NULL);
 }
