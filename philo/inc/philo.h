@@ -86,15 +86,16 @@ bool	syntax_check(int argc, char **argv);
 // 			functions that give the user information about the program.
 
 void	ft_error(char *place_of_error, t_data *data);	//TODO
-//	In case of errors, calls clean_and_exit if data != NULL.
+//	In case of errors, cleans and exits if data != NULL.
 
 int	ft_usage(void);	//TODO: implement macro for different usage errors
 //	prints message to the user on how to
 //	(correctly) start the program.
 
-void	print_log(long timestamp, t_philo *philo, char *action);	//TODO
+void	print_log(long timestamp, t_philo *philo, char *action);	
 //	for whenever a philosopher switches state, a message must be printed
 //	with the time, the philosopher in question, and the changed state (action).
+//	Usage of mutex locks to avoid messages being printed after a philosopher has died
 
 
 // 			-- P R O G R A M M E R -- U T I L S --
@@ -109,7 +110,8 @@ long	get_time();
 int	ft_atoi(const char *nptr);
 //	Converts a string of numbers into an actual integer.
 
-void	clean_and_exit(t_data *data);	//TODO
+void	cleanup_program(t_data *data);
+//	destroys mutexes and frees all allocated memory of philo and data struct.
 
 void	ft_usleep(long time);
 //	sleeps for (at least) 'time' amount of microseconds.
