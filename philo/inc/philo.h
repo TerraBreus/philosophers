@@ -42,8 +42,8 @@ typedef struct s_data
 	struct s_philo	*philo1;
 	pthread_mutex_t	*lock;
 	bool	should_stop;
-	pthread_t	*ober_tid;
-	pthread_t	*monitor_tid;
+	pthread_t	ober_tid;
+	pthread_t	monitor_tid;
 }	t_data;
 
 typedef	struct s_philo
