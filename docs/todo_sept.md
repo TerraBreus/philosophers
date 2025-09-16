@@ -78,3 +78,6 @@ make single philo scenario.
 create a norminette branch
 big ass fucking clean up for norminette lol.
 
+---
+Getting the idea we have not made our philosophers correct. They almost never think (they are able to grab a fork right away.)
+and when I do ./philo 5 230 23 23 23 some philosopher randomly dies for no reason at the end.
