@@ -19,7 +19,7 @@ SRC_USER_UTILS = \
 	print_log.c
 
 SRC_PROG_UTILS = \
-	clean_and_exit.c	\
+	cleanup_program.c	\
 	ft_usleep.c		\
 	ft_atoi.c		\
 	get_time.c
