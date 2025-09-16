@@ -48,9 +48,7 @@ typedef	struct s_philo
 {
 	int	ID;
 	pthread_t	tid;
-	pthread_mutex_t	*lock;	//TODO if any variable needs checking/changing we can use the lock in order to
-				//avoid problems with data races (checking/changing at the same time)
-				//fe: state needs to be locked if checked/changed. Same goes for last_eaten
+	pthread_mutex_t	*lock;	
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	struct s_philo	*philo_r;
