@@ -48,6 +48,7 @@ typedef	struct s_philo
 	long			last_eaten;
 	int		eat_count;
 	bool		eat_limit_reached;
+	bool		already_checked;
 	t_data	*data;
 }	t_philo;
 
