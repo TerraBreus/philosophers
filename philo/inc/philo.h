@@ -19,16 +19,6 @@
 #define THINK "is thinking.\n"
 
 //xXx S T R U C T U R E S
-typedef enum e_action
-{
-	THINKING,
-	EATING,
-	SLEEPING,
-	FORK1,
-	FORK2,
-	DEAD
-}	action;
-
 typedef struct s_data
 {
 	long	start_time;
