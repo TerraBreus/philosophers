@@ -17,6 +17,8 @@ static void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(philo->lock);
 	philo->last_eaten = get_time();
 	philo->eat_count++;
+	if (philo->eat_count == philo->data->total_eat_limit)
+		philo->eat_limit_reached == true;
 	pthread_mutex_unlock(philo->lock);
 
 	print_log(get_time(), philo, EAT);
