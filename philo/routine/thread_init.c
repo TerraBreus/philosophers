@@ -11,10 +11,15 @@ int	thread_init(t_data *data)
 	pthread_create(&(data->ober_tid), NULL, ober_routine, (void *) data);
 	if (data->total_eat_limit > 0)
 		pthread_create(&(data->monitor_tid), NULL, monitor_routine, (void *) data);
-	while (++i < data->n_philo)
+	if (data->n_philo == 1)
+		pthread_create(&(philo_n->tid), NULL, single_philo, (void *) data);
+	else
 	{
-		pthread_create(&(philo_n->tid), NULL, philo_routine,(void *) philo_n);
-		philo_n = philo_n->philo_r;
+		while (++i < data->n_philo)
+		{
+			pthread_create(&(philo_n->tid), NULL, philo_routine,(void *) philo_n);
+			philo_n = philo_n->philo_r;
+		}
 	}
 	return (0);
 }

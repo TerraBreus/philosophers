@@ -119,8 +119,11 @@ void	*monitor_routine(void *data);
 //	has been given. Function then checks whether any of the philosophers
 //	has reached this limit.
 
-void	*philo_routine(void *philo);	//TODO
+void	*philo_routine(void *philo_ptr);	//TODO
 //	Instructions for philosopher threads.
+
+void	*single_philo(void *data_ptr);
+//	Hard coded instructions for single philosopher.
 
 int	thread_init(t_data *data);
 //	pthread_create for each philosopher thread.	//TODO: include supervisor.

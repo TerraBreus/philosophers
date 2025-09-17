@@ -33,6 +33,7 @@ SRC_ROUTINE = \
 	thread_init.c	\
 	thread_join.c	\
 	ober_routine.c	\
+	single_philo.c	\
 	monitor_routine.c
 
 SRC := \
