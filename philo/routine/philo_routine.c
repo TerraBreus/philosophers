@@ -18,7 +18,10 @@ static void	ft_eat(t_philo *philo)
 	philo->last_eaten = get_time();
 	philo->eat_count++;
 	if (philo->eat_count == philo->data->total_eat_limit)
-		philo->eat_limit_reached == true;
+	{
+		philo->eat_limit_reached = true;
+		printf("philo %d reached limit\n", philo->ID);
+	}
 	pthread_mutex_unlock(philo->lock);
 
 	print_log(get_time(), philo, EAT);
