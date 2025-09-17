@@ -23,7 +23,6 @@ void	*monitor_routine(void *ptr)
 		{
 			philo->already_checked = true;
 			i++;
-			printf("i: %i\n", i);
 			pthread_mutex_lock(data->lock);
 			if (i == data->n_philo)
 			{
