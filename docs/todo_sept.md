@@ -83,3 +83,8 @@ Getting the idea we have not made our philosophers correct. They almost never th
 and when I do ./philo 5 230 23 23 23 some philosopher randomly dies for no reason at the end.
 
 Also, currently we stop the simulation if one philosopher has reached the total_eat_limit. However, instead we need to make sure all philosophers have reached this limit.
+
+---
+
+Make single philo scenario.
+For some reason, program with one philosopher ends at half the time it should die.
