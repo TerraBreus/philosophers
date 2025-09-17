@@ -69,15 +69,17 @@ in print_log
 Checking whether philosopher has died. Should only print a message when all philo are still alive except for the message stating a philosopher has died.
 
 TODO still
-monitor for amount of philosophers eaten -> should_stop variable must be adressed
-thread deletion when everything is done (also for monitor and ober)
-function to clean everything if anything fails.
-check for leaks etc.
-chcek roadmap for missed items.
-make single philo scenario.
-create a norminette branch
-big ass fucking clean up for norminette lol.
+- monitor for amount of philosophers eaten -> should_stop variable must be adressed
+- thread deletion when everything is done (also for monitor and ober)
+- function to clean everything if anything fails.
+- check for leaks etc.
+- chcek roadmap for missed items.
+- make single philo scenario.
+- create a norminette branch
+- big ass fucking clean up for norminette lol.
 
 ---
 Getting the idea we have not made our philosophers correct. They almost never think (they are able to grab a fork right away.)
 and when I do ./philo 5 230 23 23 23 some philosopher randomly dies for no reason at the end.
+
+Also, currently we stop the simulation if one philosopher has reached the total_eat_limit. However, instead we need to make sure all philosophers have reached this limit.
