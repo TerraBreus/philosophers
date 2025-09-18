@@ -1,18 +1,19 @@
 #include "philo.h"	//TODO: add function to header
 
-//thread initialization
-//
-//get time of start of simulation
-//start monitor thread to check when max meals eaten has reached (if needed)
-//(or let the waiter/supervisor do that)
-//
-//Create each inidividual thread 
-
 static void	ft_eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->fork_l);
-	print_log(get_time(), philo, FORK);
-	pthread_mutex_lock(philo->fork_r);
+	if (philo->ID % 2)
+	{
+		pthread_mutex_lock(philo->fork_l);
+		print_log(get_time(), philo, FORK);
+		pthread_mutex_lock(philo->fork_r);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->fork_r);
+		print_log(get_time(), philo, FORK);
+		pthread_mutex_lock(philo->fork_l);
+	}
 
 	pthread_mutex_lock(philo->lock);
 	philo->last_eaten = get_time();
