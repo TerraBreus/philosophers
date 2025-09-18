@@ -88,3 +88,9 @@ Also, currently we stop the simulation if one philosopher has reached the total_
 
 Make single philo scenario.
 For some reason, program with one philosopher ends at half the time it should die.
+
+---
+
+Program seems to fail at longer intervals
+such as 5 800 200 200 or 5 410 200 200
+or 199 610 200 200 (10)
