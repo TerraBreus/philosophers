@@ -1,0 +1,22 @@
+[
+  {
+    "directory": "/home/zivanov/Desktop/sep25/22/philosophers/2_philo",
+    "command": "cc -Wall -Werror -Wextra -Iinc -c main.c -o obj/main.o",
+    "file": "main.c"
+  },
+  {
+    "directory": "/home/zivanov/Desktop/sep25/22/philosophers/2_philo",
+    "command": "cc -Wall -Werror -Wextra -Iinc -c check_syntax.c -o obj/check_syntax.o",
+    "file": "check_syntax.c"
+  },
+  {
+    "directory": "/home/zivanov/Desktop/sep25/22/philosophers/2_philo",
+    "command": "cc -Wall -Werror -Wextra -Iinc -c init_structs.c -o obj/init_structs.o",
+    "file": "init_structs.c"
+  },
+  {
+    "directory": "/home/zivanov/Desktop/sep25/22/philosophers/2_philo",
+    "command": "cc -Wall -Werror -Wextra -Iinc -c utils.c -o obj/utils.o",
+    "file": "utils.c"
+  }
+]
