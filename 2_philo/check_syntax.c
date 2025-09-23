@@ -6,7 +6,7 @@
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:51:40 by zivanov           #+#    #+#             */
-/*   Updated: 2025/09/22 11:32:17 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/09/23 09:17:46 by zivanov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	check_input(int argc, char **argv)
 	while (*argv != NULL)
 	{
 		if (is_only_numerical(*argv) == false)
-			ft_usage(NON_NUMERICAL_INPUT);
+			ft_error(NON_NUMERICAL_INPUT);
 		argv++;
 	}
 	if (argc > 6 || argc < 5)
-		ft_usage(INSUFFICIENT_ARGUMENTS);
+		ft_error(INSUFFICIENT_ARGUMENTS);
 	max_philo = ft_atoi(argv[1]);
 	if (max_philo > 200)
-		ft_usage(MAX_PHILO);
+		ft_error(MAX_PHILO);
 }
 

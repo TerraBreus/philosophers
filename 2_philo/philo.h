@@ -6,7 +6,7 @@
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 11:21:56 by zivanov           #+#    #+#             */
-/*   Updated: 2025/09/22 11:32:18 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/09/23 10:33:44 by zivanov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef	struct s_philo
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	struct s_philo	*philo_r;
-	struct s_philo	*philo_l;
 	atomic_long			last_eaten;
 	atomic_int		eat_count;
 	atomic_bool		eat_limit_reached;
@@ -70,6 +69,6 @@ typedef	struct s_philo
 
 //xXx F U N C T I O N S
 void	check_input(int argc, char **argv);
-void	ft_usage(char *str);
+void	ft_error(char *str);
 int	ft_atoi(char *str);
 
