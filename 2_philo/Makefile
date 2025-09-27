@@ -6,6 +6,10 @@ SANITIZE := -fsanitize=address
 
 SRC := \
 	main.c \
+	init_structs.c \
+	utils.c \
+	check_syntax.c \
+	debug_utils.c
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 

@@ -45,6 +45,7 @@ typedef struct s_data
 	int	time_to_sleep;
 	int	total_eat_limit;
 	int	n_philo;
+	pthread_mutex_t	*log_mutex;
 	struct s_philo	*philo1;
 	atomic_bool	should_stop;
 	pthread_t	ober_tid;
@@ -61,7 +62,6 @@ typedef	struct s_philo
 	atomic_long			last_eaten;
 	atomic_int		eat_count;
 	atomic_bool		eat_limit_reached;
-	atomic_bool		already_checked;
 	t_data	*data;
 }	t_philo;
 
@@ -72,5 +72,7 @@ void	check_input(int argc, char **argv);
 void	ft_error(char *str);
 int	ft_atoi(char *str);
 t_data	*init_structs(int argc, char **argv);
+void	cleanup_program(t_data *data, t_philo *philo, int n_philo);
+void	print_philo_struct(t_philo *top_philo);
 
 
