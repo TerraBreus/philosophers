@@ -72,7 +72,7 @@ void	ft_error(char *str);
 int		ft_atoi(char *str);
 t_data	*init_structs(int argc, char **argv);
 void	cleanup_program(t_data *data, t_philo *philo, int n_philo);
-long	get_time();
+long	get_time(void);
 void	print_philo_struct(t_philo *top_philo);
 void	print_log(t_philo *philo, pthread_mutex_t *log_mutex, char *action);
 void	ft_usleep(long time);

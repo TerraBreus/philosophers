@@ -99,7 +99,7 @@ void	ft_error(char *str)
 	exit(EXIT_FAILURE);
 }
 
-long	get_time()
+long	get_time(void)
 {
 	struct timeval	tv;
 

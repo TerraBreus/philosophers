@@ -112,7 +112,7 @@ static t_data	*init_data(int argc, char **argv)
 		data->total_eat_limit = -1;
 	data->time_to_think = (data->time_to_die - data->time_to_eat - data->time_to_sleep) / 2;
 	if (data->time_to_think < 0)
-			data->time_to_think = 0;
+		data->time_to_think = 0;
 	return (data);
 }
 
