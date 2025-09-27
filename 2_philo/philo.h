@@ -43,6 +43,7 @@ typedef struct s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				time_to_think;
 	int				total_eat_limit;
 	int				n_philo;
 	struct s_philo	*philo1;
@@ -74,3 +75,4 @@ void	cleanup_program(t_data *data, t_philo *philo, int n_philo);
 long	get_time();
 void	print_philo_struct(t_philo *top_philo);
 void	print_log(t_philo *philo, pthread_mutex_t *log_mutex, char *action);
+void	ft_usleep(long time);
