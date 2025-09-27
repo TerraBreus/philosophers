@@ -5,13 +5,11 @@ static void	ft_eat(t_philo *philo)
 	if (philo->ID % 2)
 	{
 		pthread_mutex_lock(philo->fork_l);
-		print_log(get_time(), philo, FORK);
 		pthread_mutex_lock(philo->fork_r);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->fork_r);
-		print_log(get_time(), philo, FORK);
 		pthread_mutex_lock(philo->fork_l);
 	}
 
@@ -37,15 +35,16 @@ static void	ft_sleep(t_philo *philo)
 static void	ft_think(t_philo *philo)
 {
 	print_log(get_time(), philo, THINK);
+	ft_usleep(philo->data->time_to_think);
 }
 
-bool	should_stop(bool stop_sign, pthread_mutex_t *lock)
+bool	should_stop(bool *stop_sign, pthread_mutex_t *lock)
 {
 	bool	result;
 
 	result = false;
 	pthread_mutex_lock(lock);
-	if (stop_sign == true)
+	if (*stop_sign == true)
 		result = true;
 	pthread_mutex_unlock(lock);
 	return (result);
@@ -60,17 +59,17 @@ void	*philo_routine(void *ptr)
 	philo->last_eaten = philo->data->start_time;
 	data = philo->data;
 
-	if (philo->ID % 2)
-		ft_usleep(1);
+	if (!philo->ID % 2)
+		ft_usleep(data->time_to_die / 2);
 	while (true)
 	{
-		if (should_stop(data->should_stop, data->lock) == true)
+		if (should_stop(&data->should_stop, data->lock) == true)
 			break;
 		ft_eat(philo);
-		if (should_stop(data->should_stop, data->lock) == true)
+		if (should_stop(&data->should_stop, data->lock) == true)
 			break;
 		ft_sleep(philo);
-		if (should_stop(data->should_stop, data->lock) == true)
+		if (should_stop(&data->should_stop, data->lock) == true)
 			break;
 		ft_think(philo);
 	}

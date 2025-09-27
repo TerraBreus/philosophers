@@ -71,4 +71,6 @@ typedef	struct s_philo
 void	check_input(int argc, char **argv);
 void	ft_error(char *str);
 int	ft_atoi(char *str);
+t_data	*init_structs(int argc, char **argv);
+
 

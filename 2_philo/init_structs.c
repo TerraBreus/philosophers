@@ -49,6 +49,28 @@ static t_philo	*create_philo(int id, t_data *data)
 	return (result);
 }
 
+int	create_forks(t_philo *top_philo)
+{
+	t_philo	*temp_philo;
+	pthread_mutex_t	*temp_fork;
+
+	temp_philo = top_philo;
+	while (true)
+	{
+		temp_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+		if (temp_fork == NULL)
+			return (-1);
+		if (pthread_mutex_init(temp_fork, NULL) != 0)
+			return (-1);
+		temp_philo->fork_r = temp_fork;
+		temp_philo->philo_r->fork_l = temp_fork;
+		if (temp_philo->philo_r == NULL)
+			break;
+		temp_philo = temp_philo->philo_r;
+	}
+	top_philo->fork_l = temp_philo->fork_r;
+	return (0);
+}
 
 static t_philo	*init_philos(int amount_of_philo, t_data *data)
 {
@@ -72,6 +94,11 @@ static t_philo	*init_philos(int amount_of_philo, t_data *data)
 			return (NULL);
 		}
 		prev_philo->philo_r = temp_philo;
+	}
+	if (create_forks(top_philo) == -1)
+	{
+		cleanup_program(NULL, top_philo, i);
+		return (NULL);
 	}
 	return (top_philo);
 }

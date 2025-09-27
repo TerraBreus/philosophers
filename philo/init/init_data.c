@@ -11,6 +11,9 @@ t_data	*init_data(int argc, char **argv)
 	result->time_to_die = ft_atoi(argv[2]);
 	result->time_to_eat = ft_atoi(argv[3]);
 	result->time_to_sleep = ft_atoi(argv[4]);
+	result->time_to_think = (result->time_to_die - result->time_to_eat - result->time_to_sleep) / 2;
+	if (result->time_to_think < 0)
+		result->time_to_think = 1;
 	if (argc == 6)
 		result->total_eat_limit = ft_atoi(argv[5]);
 	else 

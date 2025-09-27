@@ -94,3 +94,7 @@ For some reason, program with one philosopher ends at half the time it should di
 Program seems to fail at longer intervals
 such as 5 800 200 200 or 5 410 200 200
 or 199 610 200 200 (10)
+
+Hmmmm.... The program breaks in large numbers. 
+I think I need rewrite my code in a specific way. First, I initialize all uneven philosophers and let them eat.
+Then I initialize all even philosophers and have them wait a little while before they attempt eating. That way, you get two waves. A wave of even philosophers eating, and a wave of uneven philosophers eating. When the total philosophers are uneven the situation also somewhat complicates since there will be an uneven philosopher who share a fork with the first (uneven) philosopher (5 & 1 for example)
