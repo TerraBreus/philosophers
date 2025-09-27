@@ -18,8 +18,9 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	data = init_structs(argc, argv);
-	start_simulation(data);
-	end_simulation(data);
-	cleanup_program(data);
+	//start_simulation(data);
+	//end_simulation(data);
+	print_philo_struct(data->philo1);
+	//cleanup_program(data);
 	return (0);
 }
