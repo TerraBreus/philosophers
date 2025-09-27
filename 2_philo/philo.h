@@ -6,7 +6,7 @@
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 11:21:56 by zivanov           #+#    #+#             */
-/*   Updated: 2025/09/23 10:33:44 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/09/27 13:52:47 by zivanov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,36 @@ program will run till infinitely (unless a philosopher dies)\n\n"
 //xXx S	T R U C T U R E S
 typedef struct s_data
 {
-	long	start_time;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	total_eat_limit;
-	int	n_philo;
-	pthread_mutex_t	*log_mutex;
+	long			start_time;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				total_eat_limit;
+	int				n_philo;
 	struct s_philo	*philo1;
-	atomic_bool	should_stop;
-	pthread_t	ober_tid;
-	pthread_t	monitor_tid;
+	atomic_bool		should_stop;
+	pthread_t		ober_tid;
+	pthread_mutex_t	*log_mutex;
+	pthread_t		monitor_tid;
 }	t_data;
 
-typedef	struct s_philo
+typedef struct s_philo
 {
-	int	nbr;
-	pthread_t	tid;
+	int				nbr;
+	pthread_t		tid;
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	struct s_philo	*philo_r;
-	atomic_long			last_eaten;
+	atomic_long		last_eaten;
 	atomic_int		eat_count;
 	atomic_bool		eat_limit_reached;
-	t_data	*data;
+	t_data			*data;
 }	t_philo;
-
-
 
 //xXx F U N C T I O N S
 void	check_input(int argc, char **argv);
 void	ft_error(char *str);
-int	ft_atoi(char *str);
+int		ft_atoi(char *str);
 t_data	*init_structs(int argc, char **argv);
 void	cleanup_program(t_data *data, t_philo *philo, int n_philo);
 void	print_philo_struct(t_philo *top_philo);
-
-

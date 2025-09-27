@@ -44,4 +44,3 @@ void	check_input(int argc, char **argv)
 	if (max_philo > 200)
 		ft_error(MAX_PHILO);
 }
-

@@ -15,7 +15,7 @@
 void	cleanup_program(t_data *data, t_philo *philo, int n_philo)
 {
 	t_philo	*temp;
-	int	i;
+	int		i;
 
 	if (philo != NULL)
 	{
