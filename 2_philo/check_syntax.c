@@ -29,6 +29,9 @@ void	check_input(int argc, char **argv)
 {
 	int	max_philo;
 
+	argv++;
+	if (argc > 6 || argc < 5)
+		ft_error(INSUFFICIENT_ARGUMENTS);
 	while (*argv != NULL)
 	{
 		if (is_only_numerical(*argv) == false)
