@@ -41,6 +41,38 @@ void	cleanup_program(t_data *data, t_philo *philo, int n_philo)
 	}
 }
 
+void	ft_usleep(long time)
+{
+	long	start;
+	long	time_left;
+
+	start = get_time();
+	time_left = time - (get_time() - start);
+	while (time_left > time / 4)
+	{
+		usleep(time_left / 4);
+		time_left = time - (get_time() - start);
+	}
+	while (time_left > 0)
+	{
+		usleep(1000);
+		time_left = time - (get_time() - start);
+	}
+}
+
+void	print_log(t_philo *philo, pthread_mutex_t *log_mutex, char *action)
+{
+	long	time;
+
+	pthread_mutex_lock(log_mutex);
+	time = get_time() - philo->data->start_time;
+	if (atomic_load(&philo->data->should_stop) == false)
+		printf("%lu %i %s", time, philo->nbr, action);
+	if (*(action + 4) == 'd')
+		printf("%lu %i %s", time, philo->nbr, action);
+	pthread_mutex_unlock(log_mutex);
+}
+
 int	ft_atoi(char *str)
 {
 	int	result;
