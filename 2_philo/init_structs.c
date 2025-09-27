@@ -19,6 +19,17 @@ static t_data	*init_data(int argc, char **argv)
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == NULL)
 		return (NULL);
+	data->log_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (data->log_mutex == NULL)
+	{
+		free(data);
+		return (NULL);
+	}
+	if (pthread_mutex_init(data->log_mutex, NULL) != 0)
+	{
+		free(data);
+		return (NULL);
+	}
 	data->n_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
@@ -43,8 +54,7 @@ static t_philo	*create_philo(int id, t_data *data)
 		.fork_l = NULL,
 		.philo_r = NULL,
 		.data = data,
-		.eat_limit_reached = ATOMIC_VAR_INIT(false),
-		.already_checked = ATOMIC_VAR_INIT(false)
+		.eat_limit_reached = ATOMIC_VAR_INIT(false)
 		};
 	return (result);
 }
@@ -63,9 +73,9 @@ int	create_forks(t_philo *top_philo)
 		if (pthread_mutex_init(temp_fork, NULL) != 0)
 			return (-1);
 		temp_philo->fork_r = temp_fork;
-		temp_philo->philo_r->fork_l = temp_fork;
 		if (temp_philo->philo_r == NULL)
 			break;
+		temp_philo->philo_r->fork_l = temp_fork;
 		temp_philo = temp_philo->philo_r;
 	}
 	top_philo->fork_l = temp_philo->fork_r;
@@ -79,7 +89,7 @@ static t_philo	*init_philos(int amount_of_philo, t_data *data)
 	t_philo	*prev_philo;
 	int	i;
 
-	top_philo = create_philo(i, data);
+	top_philo = create_philo(1, data);
 	if (top_philo == NULL)
 		return (NULL);
 	i = 1;
@@ -105,7 +115,6 @@ static t_philo	*init_philos(int amount_of_philo, t_data *data)
 
 t_data	*init_structs(int argc, char **argv)
 {
-	t_philo	*philo;
 	t_data	*data;
 
 	data = init_data(argc, argv);
@@ -118,4 +127,5 @@ t_data	*init_structs(int argc, char **argv)
 		ft_error("mutex or malloc failure in philo_struct\n");
 	}
 	atomic_store(&(data->should_stop), false);
+	return (data);
 }

@@ -34,7 +34,11 @@ void	cleanup_program(t_data *data, t_philo *philo, int n_philo)
 		}
 	}
 	if (data != NULL)
+	{
+		pthread_mutex_destroy(data->log_mutex);
+		free(data->log_mutex);
 		free(data);
+	}
 }
 
 int	ft_atoi(char *str)
