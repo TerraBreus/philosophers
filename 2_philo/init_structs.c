@@ -106,6 +106,7 @@ static t_data	*init_data(int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	data->threads_created = 0;
 	if (argc == 6)
 		data->total_eat_limit = ft_atoi(argv[5]);
 	else
