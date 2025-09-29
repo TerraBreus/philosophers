@@ -9,7 +9,8 @@ SRC := \
 	init_structs.c \
 	utils.c \
 	check_syntax.c \
-	debug_utils.c
+	debug_utils.c \
+	simulation.c
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 
