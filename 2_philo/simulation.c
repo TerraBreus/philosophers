@@ -76,7 +76,7 @@ void	*philo_uneven(void *ptr)
 	if (data->time_to_think > 3)
 		ft_usleep(data->time_to_think / 2);
 	else
-		ft_usleep(1);
+		ft_usleep(4);
 	while (true)
 	{
 		philo_uneven_eat(philo, data);
@@ -94,27 +94,44 @@ void	*philo_uneven(void *ptr)
 	return (NULL);
 }
 
+void	end_simulation(t_data *data)
+{
+	int		i;
+	t_philo	*philo;
+
+	philo = data->philo1;
+	i = 0;
+	while (++i <= data->threads_created)
+	{
+		pthread_join(philo->tid, NULL);
+		philo = philo->philo_r;
+	}
+}
+
 void	start_simulation(t_data *data)
 {
 	t_philo	*philo;
+	int		i;
 
+	i = 0;
 	philo = data->philo1;
 	data->start_time = get_time();
 	//TODO Ober and monitor routine
 	//if (data->n_philo == 1)
 		//TODO single philo.
-	while (philo != NULL)
+	while (++i <= data->n_philo)
 	{
 		if (philo->nbr % 2)
 		{
-			if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
-				exit(EXIT_FAILURE);	//TODO; join remaining threads and clean up program.
+			if (pthread_create(&philo->tid, NULL, philo_uneven, (void *)philo) != 0)
+				return ;
 		}
 		else
 		{
 			if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
-				exit(EXIT_FAILURE);	//TODO; join remaining threads and clean up program.
+				return ;
 		}
 		philo = philo->philo_r;
+		data->threads_created++;
 	}
 }

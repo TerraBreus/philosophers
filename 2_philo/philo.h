@@ -51,6 +51,7 @@ typedef struct s_data
 	pthread_t		ober_tid;
 	pthread_mutex_t	*log_mutex;
 	pthread_t		monitor_tid;
+	int				threads_created;
 }	t_data;
 
 typedef struct s_philo
@@ -77,3 +78,4 @@ void	print_philo_struct(t_philo *top_philo);
 void	print_log(t_philo *philo, pthread_mutex_t *log_mutex, char *action);
 void	ft_usleep(long time);
 void	start_simulation(t_data *data);
+void	end_simulation(t_data *data);
