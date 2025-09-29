@@ -96,5 +96,25 @@ void	*philo_uneven(void *ptr)
 
 void	start_simulation(t_data *data)
 {
+	t_philo	*philo;
+
+	philo = data->philo1;
 	data->start_time = get_time();
+	//TODO Ober and monitor routine
+	//if (data->n_philo == 1)
+		//TODO single philo.
+	while (philo != NULL)
+	{
+		if (philo->nbr % 2)
+		{
+			if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
+				exit(EXIT_FAILURE);	//TODO; join remaining threads and clean up program.
+		}
+		else
+		{
+			if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
+				exit(EXIT_FAILURE);	//TODO; join remaining threads and clean up program.
+		}
+		philo = philo->philo_r;
+	}
 }

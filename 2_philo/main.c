@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	check_input(argc, argv);
 	data = init_structs(argc, argv);
 	start_simulation(data);
-	end_simulation(data);
+	//end_simulation(data);
 	cleanup_program(data, data->philo1, data->n_philo);
 	return (0);
 }
