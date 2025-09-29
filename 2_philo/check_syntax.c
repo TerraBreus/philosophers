@@ -28,18 +28,17 @@ static bool	is_only_numerical(char *str)
 void	check_input(int argc, char **argv)
 {
 	int	max_philo;
+	int	i;
 
-	argv++;
+	i = 1;
 	if (argc > 6 || argc < 5)
 		ft_error(INSUFFICIENT_ARGUMENTS);
-	while (*argv != NULL)
+	while (argv[i] != NULL)
 	{
-		if (is_only_numerical(*argv) == false)
+		if (is_only_numerical(argv[i]) == false)
 			ft_error(NON_NUMERICAL_INPUT);
-		argv++;
+		i++;
 	}
-	if (argc > 6 || argc < 5)
-		ft_error(INSUFFICIENT_ARGUMENTS);
 	max_philo = ft_atoi(argv[1]);
 	if (max_philo > 200)
 		ft_error(MAX_PHILO);
