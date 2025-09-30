@@ -79,3 +79,4 @@ void	print_log(t_philo *philo, pthread_mutex_t *log_mutex, char *action);
 void	ft_usleep(long time);
 void	start_simulation(t_data *data);
 void	end_simulation(t_data *data);
+void	*death_monitor(void	*ptr);

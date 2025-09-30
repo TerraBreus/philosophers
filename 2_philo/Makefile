@@ -10,7 +10,8 @@ SRC := \
 	utils.c \
 	check_syntax.c \
 	debug_utils.c \
-	simulation.c
+	simulation.c \
+	death_monitor.c
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 
