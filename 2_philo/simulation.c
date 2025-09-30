@@ -21,7 +21,7 @@ void	philo_even_eat(t_philo *philo, t_data *data)
 	if (atomic_fetch_add(&philo->eat_count, 1) + 1 == data->total_eat_limit)
 		atomic_store(&philo->eat_limit_reached, true);
 	print_log(philo, data->log_mutex, EAT);
-	ft_usleep(data->time_to_sleep);
+	ft_usleep(data->time_to_eat);
 	pthread_mutex_unlock(philo->fork_r);
 	pthread_mutex_unlock(philo->fork_l);
 }
@@ -60,7 +60,7 @@ void	philo_uneven_eat(t_philo *philo, t_data *data)
 	if (atomic_fetch_add(&philo->eat_count, 1) + 1 == data->total_eat_limit)
 		atomic_store(&philo->eat_limit_reached, true);
 	print_log(philo, data->log_mutex, EAT);
-	ft_usleep(data->time_to_sleep);
+	ft_usleep(data->time_to_eat);
 	pthread_mutex_unlock(philo->fork_r);
 	pthread_mutex_unlock(philo->fork_l);
 }
@@ -99,6 +99,7 @@ void	end_simulation(t_data *data)
 	int		i;
 	t_philo	*philo;
 
+	pthread_join(data->ober_tid, NULL);
 	philo = data->philo1;
 	i = 0;
 	while (++i <= data->threads_created)
@@ -119,6 +120,8 @@ void	start_simulation(t_data *data)
 	//TODO Ober and monitor routine
 	//if (data->n_philo == 1)
 		//TODO single philo.
+	if (pthread_create(&data->ober_tid, NULL, death_monitor, (void *)data) != 0)
+		return ;
 	while (++i <= data->n_philo)
 	{
 		if (philo->nbr % 2)
