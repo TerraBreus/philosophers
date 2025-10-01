@@ -100,6 +100,8 @@ void	end_simulation(t_data *data)
 	t_philo	*philo;
 
 	pthread_join(data->ober_tid, NULL);
+	if (data->total_eat_limit > 0)
+		pthread_join(data->monitor_tid, NULL);
 	philo = data->philo1;
 	i = 0;
 	while (++i <= data->threads_created)
@@ -117,24 +119,34 @@ void	start_simulation(t_data *data)
 	i = 0;
 	philo = data->philo1;
 	data->start_time = get_time();
-	//TODO Ober and monitor routine
-	//if (data->n_philo == 1)
-		//TODO single philo.
 	if (pthread_create(&data->ober_tid, NULL, death_monitor, (void *)data) != 0)
 		return ;
-	while (++i <= data->n_philo)
+	if (data->total_eat_limit > 0)
 	{
-		if (philo->nbr % 2)
+		if (pthread_create(&data->monitor_tid, NULL, eat_count_monitor, (void *)data) != 0)
+			return ;
+	}
+	if (data->n_philo == 1)
+	{
+		if (pthread_create(&philo->tid, NULL, single_philo, (void *)data) != 0)
+			return ;
+	}
+	else
+	{
+		while (++i <= data->n_philo)
 		{
-			if (pthread_create(&philo->tid, NULL, philo_uneven, (void *)philo) != 0)
-				return ;
+			if (philo->nbr % 2)
+			{
+				if (pthread_create(&philo->tid, NULL, philo_uneven, (void *)philo) != 0)
+					return ;
+			}
+			else
+			{
+				if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
+					return ;
+			}
+			philo = philo->philo_r;
+			data->threads_created++;
 		}
-		else
-		{
-			if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
-				return ;
-		}
-		philo = philo->philo_r;
-		data->threads_created++;
 	}
 }
