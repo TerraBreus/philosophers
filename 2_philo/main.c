@@ -12,11 +12,19 @@
 
 #include "philo.h"
 
-static void	print_data(t_data *data)
+void	*single_philo(void *data_ptr)
 {
-	printf("time2die%d\n", data->time_to_die);
-	printf("time2eatp%d\n", data->time_to_eat);
-	printf("time2sleep%d\n", data->time_to_sleep);
+	t_data	*data;
+	t_philo	*philo;
+
+	data = (t_data *) data_ptr;
+	philo = data->philo1;
+	atomic_store(&philo->last_eaten, data->start_time);
+	pthread_mutex_lock(philo->fork_r);
+	print_log(philo, data->log_mutex, FORK);
+	ft_usleep(data->time_to_die);
+	pthread_mutex_unlock(philo->fork_r);
+	return (NULL);
 }
 
 int	main(int argc, char **argv)
@@ -25,7 +33,6 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	data = init_structs(argc, argv);
-	print_data(data);
 	start_simulation(data);
 	end_simulation(data);
 	cleanup_program(data, data->philo1, data->n_philo);
