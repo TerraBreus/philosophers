@@ -80,3 +80,5 @@ void	ft_usleep(long time);
 void	start_simulation(t_data *data);
 void	end_simulation(t_data *data);
 void	*death_monitor(void	*ptr);
+void	*eat_count_monitor(void *ptr);
+void	*single_philo(void *ptr);
