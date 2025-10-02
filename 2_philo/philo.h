@@ -26,7 +26,7 @@ Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep \
 [number_of_times_each_philosopher_must_eat]*\n\n* If no parameter is given, \
 program will run till infinitely (unless a philosopher dies)\n\n"
 
-#define MAX_PHILO "Max amount of philosophers is 200.\n"
+#define MAX_PHILO "Amount of philosophers must be between 1 and 200\n"
 
 #define NON_NUMERICAL_INPUT "No non-numerical characters allowed\n"
 

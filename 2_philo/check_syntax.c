@@ -40,6 +40,6 @@ void	check_input(int argc, char **argv)
 		i++;
 	}
 	max_philo = ft_atoi(argv[1]);
-	if (max_philo > 200)
+	if (max_philo > 200 || max_philo == 0)
 		ft_error(MAX_PHILO);
 }
