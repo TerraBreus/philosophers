@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*   philo_routine.c                                     :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 14:59:58 by zivanov           #+#    #+#             */
-/*   Updated: 2025/10/04 15:14:37 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/10/04 17:20:50 by zivanov        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	printlog_and_sleep(t_data *data, t_philo *philo, char *action)
 	else if (*(action + 3) == 'e')
 		ft_usleep(data->time_to_eat);
 }
+
 void	philo_even_eat(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(philo->fork_r);
@@ -57,6 +58,7 @@ void	*philo_even(void *ptr)
 	data = philo->data;
 	atomic_fetch_add(&data->n_ready, 1);
 	while (!atomic_load(&data->simulation_ready))
+		;
 	atomic_store(&philo->last_eaten, data->start_time);
 	while (true)
 	{
@@ -82,11 +84,9 @@ void	*philo_uneven(void *ptr)
 	data = philo->data;
 	atomic_fetch_add(&data->n_ready, 1);
 	while (!atomic_load(&data->simulation_ready))
+		;
 	atomic_store(&philo->last_eaten, data->start_time);
-	if (data->time_to_think > 3)
-		ft_usleep(data->time_to_think / 2);
-	else
-		ft_usleep(2);
+	ft_usleep((data->time_to_think / 2) + 2);
 	while (true)
 	{
 		philo_uneven_eat(philo, data);
