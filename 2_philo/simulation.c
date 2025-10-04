@@ -33,6 +33,8 @@ void	*philo_even(void *ptr)
 
 	philo = (t_philo *)ptr;
 	data = philo->data;
+	atomic_fetch_add(&data->n_ready, 1);
+	while (!atomic_load(&data->simulation_ready))
 	atomic_store(&philo->last_eaten, data->start_time);
 	while (true)
 	{
@@ -72,6 +74,8 @@ void	*philo_uneven(void *ptr)
 
 	philo = (t_philo *)ptr;
 	data = philo->data;
+	atomic_fetch_add(&data->n_ready, 1);
+	while (!atomic_load(&data->simulation_ready))
 	atomic_store(&philo->last_eaten, data->start_time);
 	if (data->time_to_think > 3)
 		ft_usleep(data->time_to_think / 2);
@@ -104,6 +108,9 @@ void	end_simulation(t_data *data)
 		pthread_join(data->monitor_tid, NULL);
 	philo = data->philo1;
 	i = 0;
+	//TODO: Do something here if threads_created != n_philos
+	//aka this means something went wrong with thread creation
+	//and we have to detach or force the threads to exit.
 	while (++i <= data->threads_created)
 	{
 		pthread_join(philo->tid, NULL);
@@ -118,14 +125,6 @@ void	start_simulation(t_data *data)
 
 	i = 0;
 	philo = data->philo1;
-	data->start_time = get_time();
-	if (pthread_create(&data->ober_tid, NULL, death_monitor, (void *)data) != 0)
-		return ;
-	if (data->total_eat_limit > 0)
-	{
-		if (pthread_create(&data->monitor_tid, NULL, eat_count_monitor, (void *)data) != 0)
-			return ;
-	}
 	if (data->n_philo == 1)
 	{
 		if (pthread_create(&philo->tid, NULL, single_philo, (void *)data) != 0)
@@ -149,4 +148,16 @@ void	start_simulation(t_data *data)
 			data->threads_created++;
 		}
 	}
+	while (atomic_load(&data->n_ready) != data->n_philo);
+	data->start_time = get_time();
+	atomic_store(&data->simulation_ready, true);	
+	if (pthread_create(&data->ober_tid, NULL, death_monitor, (void *)data) != 0)
+		return ;
+	if (data->total_eat_limit > 0)
+	{
+		if (pthread_create(&data->monitor_tid, NULL, eat_count_monitor, (void *)data) != 0)
+			return ;
+	}
+	//TODO Note: all created threads will hang if a thread creation fails.
+	//Thus we also need to make sure all threads join correctly when an error occurs
 }

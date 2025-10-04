@@ -52,6 +52,8 @@ typedef struct s_data
 	pthread_mutex_t	*log_mutex;
 	pthread_t		monitor_tid;
 	int				threads_created;
+	atomic_bool		simulation_ready;
+	atomic_int		n_ready;
 }	t_data;
 
 typedef struct s_philo

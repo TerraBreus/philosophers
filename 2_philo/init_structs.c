@@ -114,6 +114,7 @@ static t_data	*init_data(int argc, char **argv)
 	data->time_to_think = (data->time_to_die - data->time_to_eat - data->time_to_sleep) / 2;
 	if (data->time_to_think < 0)
 		data->time_to_think = 0;
+	atomic_store(&data->n_ready, 0);
 	return (data);
 }
 
@@ -131,5 +132,6 @@ t_data	*init_structs(int argc, char **argv)
 		ft_error("mutex or malloc failure in philo_struct\n");
 	}
 	atomic_store(&(data->should_stop), false);
+	atomic_store(&data->simulation_ready, false);
 	return (data);
 }
