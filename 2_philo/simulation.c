@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulation.c                                       :+:      :+:    :+:   */
+/*   simulation.c                                        :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:33:50 by zivanov           #+#    #+#             */
-/*   Updated: 2025/10/04 15:01:01 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/10/04 17:14:52 by zivanov        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ void	start_simulation(t_data *data)
 		{
 			if (philo->nbr % 2)
 			{
-				if (pthread_create(&philo->tid, NULL, philo_uneven, (void *)philo) != 0)
+				if (pthread_create(&philo->tid, NULL,
+						philo_uneven, (void *)philo) != 0)
 					return ;
 			}
 			else
 			{
-				if (pthread_create(&philo->tid, NULL, philo_even, (void *)philo) != 0)
+				if (pthread_create(&philo->tid, NULL,
+						philo_even, (void *)philo) != 0)
 					return ;
 			}
 			philo = philo->philo_r;
@@ -69,13 +71,15 @@ void	start_simulation(t_data *data)
 	ober_and_monitor = 1;
 	if (data->total_eat_limit > 0)
 	{
-		if (pthread_create(&data->monitor_tid, NULL, eat_count_monitor, (void *)data) != 0)
+		if (pthread_create(&data->monitor_tid, NULL,
+				eat_count_monitor, (void *)data) != 0)
 			return ;
 		ober_and_monitor = 2;
 	}
-	while (atomic_load(&data->n_ready) != data->n_philo + ober_and_monitor);
+	while (atomic_load(&data->n_ready) != data->n_philo + ober_and_monitor)
+		;
 	data->start_time = get_time();
-	atomic_store(&data->simulation_ready, true);	
+	atomic_store(&data->simulation_ready, true);
 	//TODO Note: all created threads will hang if a thread creation fails.
 	//Thus we also need to make sure all threads join correctly when an error occurs
 }
