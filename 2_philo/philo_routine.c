@@ -35,6 +35,19 @@ void	philo_even_eat(t_philo *philo, t_data *data)
 	pthread_mutex_unlock(philo->fork_l);
 }
 
+void	philo_uneven_eat(t_philo *philo, t_data *data)
+{
+	pthread_mutex_lock(philo->fork_l);
+	print_log(philo, data->log_mutex, FORK);
+	pthread_mutex_lock(philo->fork_r);
+	atomic_store(&philo->last_eaten, get_time());
+	if (atomic_fetch_add(&philo->eat_count, 1) + 1 == data->total_eat_limit)
+		atomic_store(&philo->eat_limit_reached, true);
+	printlog_and_sleep(data, philo, EAT);
+	pthread_mutex_unlock(philo->fork_r);
+	pthread_mutex_unlock(philo->fork_l);
+}
+
 void	*philo_even(void *ptr)
 {
 	t_philo	*philo;
@@ -58,19 +71,6 @@ void	*philo_even(void *ptr)
 			break ;
 	}
 	return (NULL);
-}
-
-void	philo_uneven_eat(t_philo *philo, t_data *data)
-{
-	pthread_mutex_lock(philo->fork_l);
-	print_log(philo, data->log_mutex, FORK);
-	pthread_mutex_lock(philo->fork_r);
-	atomic_store(&philo->last_eaten, get_time());
-	if (atomic_fetch_add(&philo->eat_count, 1) + 1 == data->total_eat_limit)
-		atomic_store(&philo->eat_limit_reached, true);
-	printlog_and_sleep(data, philo, EAT);
-	pthread_mutex_unlock(philo->fork_r);
-	pthread_mutex_unlock(philo->fork_l);
 }
 
 void	*philo_uneven(void *ptr)
