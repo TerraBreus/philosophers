@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   death_monitor.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/04 14:57:40 by zivanov           #+#    #+#             */
+/*   Updated: 2025/10/04 14:58:27 by zivanov          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 bool	has_died(t_philo *philo)
@@ -9,7 +21,6 @@ bool	has_died(t_philo *philo)
 	current_time = get_time();
 	time_to_die = philo->data->time_to_die;
 	die_check = current_time - atomic_load(&philo->last_eaten) - time_to_die;
-	
 	if (die_check >= 0)
 		return (true);
 	else
@@ -59,7 +70,7 @@ bool	all_have_eaten(t_philo *philo)
 
 void	*eat_count_monitor(void	*ptr)
 {
-	t_data *data;
+	t_data	*data;
 	t_philo	*philo;
 
 	data = (t_data *)ptr;
