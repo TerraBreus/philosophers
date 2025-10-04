@@ -6,7 +6,7 @@
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 11:21:56 by zivanov           #+#    #+#             */
-/*   Updated: 2025/09/27 13:52:47 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/10/04 15:15:13 by zivanov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ void	start_simulation(t_data *data);
 void	end_simulation(t_data *data);
 void	*death_monitor(void	*ptr);
 void	*eat_count_monitor(void *ptr);
+void	*philo_uneven(void *ptr);
+void	*philo_even(void *ptr);
 void	*single_philo(void *ptr);
