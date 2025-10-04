@@ -55,7 +55,7 @@ void	ft_usleep(long time)
 	}
 	while (time_left > 0)
 	{
-		usleep(1000);
+		usleep(500);
 		time_left = time - (get_time() - start);
 	}
 }
