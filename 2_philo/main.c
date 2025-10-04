@@ -6,11 +6,14 @@
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:47:09 by zivanov           #+#    #+#             */
-/*   Updated: 2025/09/27 13:39:26 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/10/04 14:59:15 by zivanov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+//TODO Fix 1 philosopher timing
+//Fix valgrind --tool=drd
 
 void	*single_philo(void *data_ptr)
 {
@@ -19,6 +22,9 @@ void	*single_philo(void *data_ptr)
 
 	data = (t_data *) data_ptr;
 	philo = data->philo1;
+	atomic_fetch_add(&data->n_ready, 1);
+	while (!atomic_load(&data->simulation_ready))
+		;
 	atomic_store(&philo->last_eaten, data->start_time);
 	pthread_mutex_lock(philo->fork_r);
 	print_log(philo, data->log_mutex, FORK);
