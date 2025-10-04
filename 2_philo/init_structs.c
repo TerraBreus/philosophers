@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   init_structs.c                                      :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zivanov <zivanov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 09:12:27 by zivanov           #+#    #+#             */
-/*   Updated: 2025/10/04 14:58:27 by zivanov          ###   ########.fr       */
+/*   Updated: 2025/10/04 17:28:23 by zivanov        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ static t_data	*init_data(int argc, char **argv)
 		data->total_eat_limit = ft_atoi(argv[5]);
 	else
 		data->total_eat_limit = -1;
-	data->time_to_think = (data->time_to_die \
-			- data->time_to_eat \
-			- data->time_to_sleep) / 2;
+	data->time_to_think = ((
+				data->time_to_die - data->time_to_eat - data->time_to_sleep)
+				/ 2);
 	if (data->time_to_think < 0)
 		data->time_to_think = 0;
 	atomic_store(&data->n_ready, 0);
