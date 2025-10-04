@@ -15,11 +15,11 @@
 void	printlog_and_sleep(t_data *data, t_philo *philo, char *action)
 {
 	print_log(philo, data->log_mutex, action);
-	if (*(action + 4) == 's')
+	if (*(action + 3) == 's')
 		ft_usleep(data->time_to_sleep);
-	else if (*(action + 4) == 't')
+	else if (*(action + 3) == 't')
 		ft_usleep(data->time_to_think);
-	else if (*(action + 4) == 'e')
+	else if (*(action + 3) == 'e')
 		ft_usleep(data->time_to_eat);
 }
 void	philo_even_eat(t_philo *philo, t_data *data)

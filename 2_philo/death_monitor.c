@@ -34,6 +34,9 @@ void	*death_monitor(void *ptr)
 
 	data = (t_data *)ptr;
 	philo = data->philo1;
+	atomic_fetch_add(&data->n_ready, 1);
+	while (!atomic_load(&data->simulation_ready))
+		;
 	while (atomic_load(&data->should_stop) == false)
 	{
 		if (has_died(philo) == true)
@@ -50,20 +53,18 @@ void	*death_monitor(void *ptr)
 
 bool	all_have_eaten(t_philo *philo)
 {
-	int	eat_limit;
-	int	philos_reached_limit;
-	int	total_philos;
+	int		eat_limit;
+	bool	all_have_eaten;
 
 	eat_limit = philo->data->total_eat_limit;
-	total_philos = philo->data->n_philo;
-	philos_reached_limit = 0;
+	all_have_eaten = true;
 	while (philo != NULL)
 	{
-		if (atomic_load(&philo->eat_count) >= eat_limit)
-			philos_reached_limit++;
+		if (atomic_load(&philo->eat_count) < eat_limit)
+			all_have_eaten = false;
 		philo = philo->philo_r;
 	}
-	if (philos_reached_limit == total_philos)
+	if (all_have_eaten == true)
 		return (true);
 	return (false);
 }
@@ -75,6 +76,9 @@ void	*eat_count_monitor(void	*ptr)
 
 	data = (t_data *)ptr;
 	philo = data->philo1;
+	atomic_fetch_add(&data->n_ready, 1);
+	while (!atomic_load(&data->simulation_ready))
+		;
 	while (atomic_load(&data->should_stop) == false)
 	{
 		if (all_have_eaten(philo) == true)

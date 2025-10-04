@@ -36,6 +36,7 @@ void	start_simulation(t_data *data)
 {
 	t_philo	*philo;
 	int		i;
+	int		ober_and_monitor;
 
 	i = 0;
 	philo = data->philo1;
@@ -63,16 +64,18 @@ void	start_simulation(t_data *data)
 			data->threads_created++;
 		}
 	}
-	while (atomic_load(&data->n_ready) != data->n_philo);
-	data->start_time = get_time();
-	atomic_store(&data->simulation_ready, true);	
 	if (pthread_create(&data->ober_tid, NULL, death_monitor, (void *)data) != 0)
 		return ;
+	ober_and_monitor = 1;
 	if (data->total_eat_limit > 0)
 	{
 		if (pthread_create(&data->monitor_tid, NULL, eat_count_monitor, (void *)data) != 0)
 			return ;
+		ober_and_monitor = 2;
 	}
+	while (atomic_load(&data->n_ready) != data->n_philo + ober_and_monitor);
+	data->start_time = get_time();
+	atomic_store(&data->simulation_ready, true);	
 	//TODO Note: all created threads will hang if a thread creation fails.
 	//Thus we also need to make sure all threads join correctly when an error occurs
 }
